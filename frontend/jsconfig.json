@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@footer/*": ["src/components/common/Footer/*"],
+      "@navbar/*": ["src/components/common/NavBar/*"],
+      "@mainpage/*": ["src/components/views/MainPage/*"],
+      "@login/*": ["src/components/views/Login/*"],
+      "@register/*": ["src/components/views/Register/*"],
+      "@documents/*": ["src/components/views/Documents/*"],
+      "@request/*": ["src/components/views/Request/*"],
+      "@result/*": ["src/components/views/Result/*"],
+      "@checkRequestList/*": ["src/components/views/checkRequestList/*"],
+      "@checkRequest/*": ["src/components/views/CheckRequest/*"]
+    }
+  }
+}
