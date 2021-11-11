@@ -1,10 +1,13 @@
 import "@/App.less";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import NavBar from "@navbar/NavBar";
-import MainPage from "./components/views/MainPage/MainPage";
+import MainPage from "@mainpage/MainPage";
 import Login from "@login/Login";
 import Register from "@register/Register";
-import RequestPage from "@/components/views/RequestPage/RequestPage";
+import Documents from "@documents/Documents";
+import RequestPage from "@requestpage/RequestPage";
+import ResultList from "@resultlist/ResultList";
+import ResultPage from "@/components/views/ResultPage/ResultPage";
 import Footer from "@footer/Footer";
 
 function App() {
@@ -21,7 +24,10 @@ function App() {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/documents" component={Documents} />
           <Route exact path="/request" component={RequestPage} />
+          <Route exact path="/result" component={ResultList} />
+          <Route exact path="/result/:postID" component={ResultPage} />
         </Switch>
       </div>
       {/* <Footer /> */}

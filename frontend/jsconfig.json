@@ -5,12 +5,14 @@
       "@/*": ["./src/*"],
       "@footer/*": ["src/components/common/Footer/*"],
       "@navbar/*": ["src/components/common/NavBar/*"],
+      "@titlebar/*": ["src/components/common/TitleBar/*"],
       "@mainpage/*": ["src/components/views/MainPage/*"],
       "@login/*": ["src/components/views/Login/*"],
       "@register/*": ["src/components/views/Register/*"],
       "@documents/*": ["src/components/views/Documents/*"],
       "@requestpage/*": ["src/components/views/RequestPage/*"],
-      "@result/*": ["src/components/views/Result/*"],
+      "@resultlist/*": ["src/components/views/ResultList/*"],
+      "@result/*": ["src/components/views/ResultPage/*"],
       "@checkRequestList/*": ["src/components/views/checkRequestList/*"],
       "@checkRequest/*": ["src/components/views/CheckRequest/*"]
     }
