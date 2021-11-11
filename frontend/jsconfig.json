@@ -9,7 +9,7 @@
       "@login/*": ["src/components/views/Login/*"],
       "@register/*": ["src/components/views/Register/*"],
       "@documents/*": ["src/components/views/Documents/*"],
-      "@request/*": ["src/components/views/Request/*"],
+      "@requestpage/*": ["src/components/views/RequestPage/*"],
       "@result/*": ["src/components/views/Result/*"],
       "@checkRequestList/*": ["src/components/views/checkRequestList/*"],
       "@checkRequest/*": ["src/components/views/CheckRequest/*"]

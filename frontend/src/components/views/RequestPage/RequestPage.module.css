@@ -1,0 +1,7 @@
+.container {
+  width: 1000px;
+  padding-bottom: 2%;
+  min-height: calc(83vh);
+  word-break: break-all;
+  margin: 0 auto;
+}
