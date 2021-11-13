@@ -10,8 +10,8 @@ function NavBar() {
   const nonlogin_menu = ["Documents"]; // 0
   const user_menu = ["Documents", "Request", "Result"]; // 1
   const admin_menu = ["Check Request", "Check Result"]; // 2
-  const user_url = ["/documents", "/request", "/result"];
-  const admin_url = ["/checkRequest", "/checkResult"];
+  const user_url = ["/user/documents", "/user/request", "/user/result"];
+  const admin_url = ["/admin/checkRequest", "/admin/checkResult"];
   const movePage = (url) => {
     history.push(url);
   };

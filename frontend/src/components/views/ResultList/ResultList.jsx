@@ -13,7 +13,7 @@ function ResultList() {
   const [cnt, setCnt] = useState(10 - ListData.length);
   const onChange = () => {};
   const moveResultPage = (idx) => {
-    history.push(`/result/${idx}`);
+    history.push(`/user/result/${idx}`);
   };
   const columns = [
     {

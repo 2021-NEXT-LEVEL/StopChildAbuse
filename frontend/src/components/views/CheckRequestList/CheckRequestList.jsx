@@ -11,7 +11,7 @@ function CheckRequestList() {
   const [cnt, setCnt] = useState(10 - ListData.length);
   const onChange = () => {};
   const moveResultPage = (idx) => {
-    history.push(`/checkRequest/${idx}`);
+    history.push(`/admin/checkRequest/${idx}`);
   };
 
   const columns = [
