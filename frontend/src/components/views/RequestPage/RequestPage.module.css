@@ -1,0 +1,52 @@
+.container {
+  width: 1000px;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  min-height: calc(83vh);
+  word-break: break-all;
+  margin: 0 auto;
+}
+
+.paper {
+  padding-bottom: 30px;
+}
+
+.inner {
+  padding-left: 45px;
+  font-size: 1.1em;
+}
+
+.description {
+  padding-bottom: 8px;
+}
+
+.warning {
+  float: left;
+  height: 40px;
+  font-size: 1em;
+}
+
+.warning_text {
+  padding-left: 100px;
+  font-size: 1em;
+}
+
+.questionBox {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.box {
+  margin-bottom: 20px;
+}
+
+.box p {
+  margin-top: -10px;
+}
+
+.submitBtn {
+  float: right;
+  margin-right: 30px;
+  padding-left: -10px;
+  padding-right: -10px;
+}
