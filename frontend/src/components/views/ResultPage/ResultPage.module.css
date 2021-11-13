@@ -1,0 +1,48 @@
+.container {
+  width: 1000px;
+  padding-top: 1%;
+  padding-bottom: 2%;
+  min-height: calc(83vh);
+  word-break: break-all;
+  margin: 0 auto;
+}
+
+.paper {
+  padding-bottom: 30px;
+}
+
+.inner {
+  padding-left: 45px;
+  padding-right: 45px;
+  font-size: 1.1em;
+}
+
+.description {
+  padding-bottom: 8px;
+}
+
+.outer_box {
+  border: 2px solid #d9d9d9;
+  border-radius: 10px;
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.outer_box font {
+  font-weight: 500;
+}
+
+.video {
+  width: 450px;
+  height: 250px;
+  background-color: black;
+}
+
+.keyInput div {
+  padding-top: 10px;
+}
+
+.downloadButton {
+  margin-top: 30px;
+}
