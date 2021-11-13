@@ -18,20 +18,23 @@
 }
 
 .description {
-  padding-bottom: 20px;
+  padding-bottom: 8px;
 }
 
 .outer_box {
   border: 2px solid #d9d9d9;
   border-radius: 10px;
   width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
 }
 
-.pagination {
-  padding-top: 30px;
-  text-align: center;
+.outer_box font {
+  font-weight: 500;
 }
 
-.table_row {
-  cursor: pointer;
+.video {
+  width: 450px;
+  height: 250px;
+  background-color: black;
 }

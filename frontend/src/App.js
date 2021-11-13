@@ -7,7 +7,10 @@ import Register from "@register/Register";
 import Documents from "@documents/Documents";
 import RequestPage from "@requestpage/RequestPage";
 import ResultList from "@resultlist/ResultList";
-import ResultPage from "@/components/views/ResultPage/ResultPage";
+import ResultPage from "@result/ResultPage";
+import CheckRequestList from "@checkRequestList/CheckRequestList";
+import CheckRequest from "@checkRequest/CheckRequest";
+import CheckResult from "@checkResult/CheckResult";
 import Footer from "@footer/Footer";
 
 function App() {
@@ -28,6 +31,9 @@ function App() {
           <Route exact path="/request" component={RequestPage} />
           <Route exact path="/result" component={ResultList} />
           <Route exact path="/result/:postID" component={ResultPage} />
+          <Route exact path="/checkRequest" component={CheckRequestList} />
+          <Route exact path="/checkRequest/:postID" component={CheckRequest} />
+          <Route exact path="/checkResult" component={CheckResult} />
         </Switch>
       </div>
       {/* <Footer /> */}

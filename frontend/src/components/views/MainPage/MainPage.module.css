@@ -64,3 +64,8 @@
 .description {
   font-size: 1.2em;
 }
+
+.admin_rightside {
+  padding-left: 50px;
+  padding-right: 50px;
+}

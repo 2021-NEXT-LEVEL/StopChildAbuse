@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import styles from "@register/Register.module.css";
 import { ChakraProvider } from "@chakra-ui/react";
 import {
@@ -25,7 +26,7 @@ const CFaLock = chakra(FaLock);
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-
+  const history = useHistory();
   const handleShowClick = () => setShowPassword(!showPassword);
 
   return (
@@ -34,7 +35,7 @@ function Login() {
         <Flex
           flexDirection="column"
           width="100wh"
-          height="100vh"
+          height="80vh"
           backgroundColor="gray.200"
           justifyContent="center"
           alignItems="center"
@@ -134,7 +135,7 @@ function Login() {
                     colorScheme="teal"
                     width="full"
                   >
-                    Register
+                    Sign up
                   </Button>
                 </Stack>
               </form>
