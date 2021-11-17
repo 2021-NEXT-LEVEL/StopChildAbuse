@@ -1,12 +1,38 @@
 import React from "react";
+import Axios from "@api/index";
 import styles from "@requestpage/RequestPage.module.css";
 import TitleBar from "@titlebar/TitleBar";
 import Paper from "@mui/material/Paper";
-import { Input, DatePicker, Button } from "antd";
+import { Form, Input, DatePicker, Button } from "antd";
 
 function RequestPage() {
-  const { RangePicker } = DatePicker;
   const { TextArea } = Input;
+  const onFinish = (values) => {
+    let current = new Date();
+    let variables = {
+      request_date: values.request_date._d,
+      center_name: values.center_name,
+      date: current,
+      child_name: values.child_name,
+      request_reason: values.request_reason,
+      process_state: "0",
+      check: "0",
+    };
+    console.log(variables);
+
+    // Axios.post("user/request/", variables).then((response) => {
+    //   console.log(response);
+    //   if (response.status === 200) {
+    //     console.log("Request success");
+    //   } else {
+    //     alert("Request failed");
+    //   }
+    // });
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
   return (
     <div className={styles.container}>
       <Paper className={styles.paper} elevation={0}>
@@ -26,32 +52,51 @@ function RequestPage() {
               부탁드립니다.
             </div>
           </div>
-          <div className={styles.questionBox}>
-            <div className={styles.box}>
-              Q. 어린이집 이름
-              <p />
-              <Input style={{ width: "28.5%" }} />
+          <Form
+            name="request_form"
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
+          >
+            <div className={styles.questionBox}>
+              <div className={styles.box}>
+                Q. 어린이집 이름
+                <p />
+                <Form.Item name="center_name">
+                  <Input style={{ width: "28.5%" }} />
+                </Form.Item>
+              </div>
+              <div className={styles.box}>
+                Q. 날짜 선택
+                <p />
+                <Form.Item name="request_date">
+                  <DatePicker />
+                </Form.Item>
+              </div>
+              <div className={styles.box}>
+                Q. 아동 이름
+                <p />
+                <Form.Item name="child_name">
+                  <Input style={{ width: "28.5%" }} />
+                </Form.Item>
+              </div>
+              <div className={styles.box}>
+                Q. 해당 서비스를 사용하려는 목적에 대해 자세하게 기술하시오.
+                정당한 요구가 아닐 시 반출이 거부될 수 있습니다.
+                <p />
+                <Form.Item name="request_reason">
+                  <TextArea rows={5} style={{ width: "80%" }} />
+                </Form.Item>
+              </div>
+              <Button
+                type="primary"
+                size="large"
+                className={styles.submitBtn}
+                htmlType="submit"
+              >
+                제출
+              </Button>
             </div>
-            <div className={styles.box}>
-              Q. 날짜 선택
-              <p />
-              <RangePicker />
-            </div>
-            <div className={styles.box}>
-              Q. 아동 이름
-              <p />
-              <Input style={{ width: "28.5%" }} />
-            </div>
-            <div className={styles.box}>
-              Q. 해당 서비스를 사용하려는 목적에 대해 자세하게 기술하시오.
-              정당한 요구가 아닐 시 반출이 거부될 수 있습니다.
-              <p />
-              <TextArea rows={5} style={{ width: "80%" }} />
-            </div>
-            <Button type="primary" size="large" className={styles.submitBtn}>
-              제출
-            </Button>
-          </div>
+          </Form>
         </div>
       </Paper>
     </div>

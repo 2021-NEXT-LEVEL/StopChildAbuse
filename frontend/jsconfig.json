@@ -3,6 +3,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@api/*": ["./src/api/*"],
       "@footer/*": ["src/components/common/Footer/*"],
       "@navbar/*": ["src/components/common/NavBar/*"],
       "@titlebar/*": ["src/components/common/TitleBar/*"],

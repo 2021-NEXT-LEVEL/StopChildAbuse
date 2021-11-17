@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import styles from "@result/ResultPage.module.css";
+import styles from "@checkRequest/CheckRequest.module.css";
 import TitleBar from "@titlebar/TitleBar";
 import Paper from "@mui/material/Paper";
-import { Input, Row, Col, Radio, Button, Result, Progress } from "antd";
+import { Form, Row, Col, Radio, Button, Result, Progress } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 
 function ResultPage() {
@@ -15,6 +15,10 @@ function ResultPage() {
 
   const onChange = (e) => {
     setCheckValue(e.target.value);
+  };
+
+  const handleSubmit = (values) => {
+    console.log(checkValue); // 적절성 체크 (1 or 2)
   };
 
   return (
@@ -74,6 +78,14 @@ function ResultPage() {
               </div> */}
             </Col>
           </Row>
+          <Button
+            type="primary"
+            size="large"
+            className={styles.submitBtn}
+            onClick={handleSubmit}
+          >
+            제출
+          </Button>
         </div>
       </Paper>
     </div>
