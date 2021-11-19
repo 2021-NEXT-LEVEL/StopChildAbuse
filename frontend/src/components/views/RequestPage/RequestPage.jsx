@@ -10,6 +10,7 @@ function RequestPage() {
   const onFinish = (values) => {
     let current = new Date();
     let variables = {
+      session_id: localStorage.id,
       request_date: values.request_date._d,
       center_name: values.center_name,
       date: current,
@@ -20,19 +21,20 @@ function RequestPage() {
     };
     console.log(variables);
 
-    // Axios.post("user/request/", variables).then((response) => {
-    //   console.log(response);
-    //   if (response.status === 200) {
-    //     console.log("Request success");
-    //   } else {
-    //     alert("Request failed");
-    //   }
-    // });
+    Axios.post("user/request/", variables).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        console.log("Request success");
+      } else {
+        alert("Request failed");
+      }
+    });
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
     <div className={styles.container}>
       <Paper className={styles.paper} elevation={0}>

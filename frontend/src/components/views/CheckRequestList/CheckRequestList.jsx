@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Axios from "@api/index";
 import styles from "@checkRequestList/CheckRequestList.module.css";
 import { useHistory } from "react-router-dom";
 import TitleBar from "@titlebar/TitleBar";
@@ -8,8 +9,7 @@ import { ListData } from "@checkRequestList/sections/ListData";
 
 function CheckRequestList() {
   const history = useHistory();
-  const [cnt, setCnt] = useState(10 - ListData.length);
-  const onChange = () => {};
+  const [listData, setListData] = useState([]);
   const moveResultPage = (idx) => {
     history.push(`/admin/checkRequest/${idx}`);
   };
@@ -40,6 +40,17 @@ function CheckRequestList() {
       width: 150,
     },
   ];
+
+  useEffect(() => {
+    Axios.get("admin/checkRequest/").then((res) => {
+      if (res.status === 200) {
+        console.log(res);
+        setListData(res.data);
+      } else {
+        alert("register failed");
+      }
+    });
+  }, []);
 
   return (
     <div className={styles.container}>

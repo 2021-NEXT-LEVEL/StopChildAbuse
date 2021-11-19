@@ -36,16 +36,24 @@ function Login() {
       password: e.target.password.value,
     };
 
-    Axios.post("login/", variables).then((response) => {
-      console.log(response);
-      if (response.status === 200) {
+    Axios.post("login/", variables).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
         console.log("login success");
-        // history.push("/user/main");
+        localStorage.setItem("id", res.data.user_id);
+        localStorage.setItem("name", res.data.name);
+        console.log(localStorage);
+        history.push("/user/main");
       } else {
         alert("login failed");
       }
     });
   };
+
+  useEffect(() => {
+    localStorage.clear();
+    // console.log(localStorage);
+  }, []);
 
   return (
     <ChakraProvider>

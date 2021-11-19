@@ -48,11 +48,11 @@ function Register() {
     };
 
     Axios.post("register/", variables)
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
           console.log("register success");
-          // history.push("/user/main");
+          history.push("/");
         } else {
           alert("register failed");
         }
@@ -61,6 +61,11 @@ function Register() {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    localStorage.clear();
+    // console.log(localStorage);
+  }, []);
 
   return (
     <ChakraProvider>
