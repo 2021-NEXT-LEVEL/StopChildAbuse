@@ -40,8 +40,8 @@ function Login() {
       console.log(res);
       if (res.status === 200) {
         console.log("login success");
-        localStorage.setItem("id", res.data.user_id);
-        localStorage.setItem("name", res.data.name);
+        localStorage.setItem("id", res.data.data.user_id);
+        localStorage.setItem("name", res.data.data.name);
         console.log(localStorage);
         history.push("/user/main");
       } else {

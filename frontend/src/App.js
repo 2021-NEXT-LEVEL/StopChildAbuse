@@ -32,18 +32,18 @@ function App() {
           <Route exact path="/user/request" component={RequestPage} />
           <Route exact path="/user/result" component={ResultList} />
           <Route exact path="/user/result/:postID" component={ResultPage} />
-          <Route exact path="/admin/main" component={AdminMainPage} />
+          <Route exact path="/master/main" component={AdminMainPage} />
           <Route
             exact
-            path="/admin/checkRequest"
+            path="/master/checkRequest"
             component={CheckRequestList}
           />
           <Route
             exact
-            path="/admin/checkRequest/:postID"
+            path="/master/checkRequest/:postID"
             component={CheckRequest}
           />
-          <Route exact path="/admin/checkResult" component={CheckResult} />
+          <Route exact path="/master/checkResult" component={CheckResult} />
         </Switch>
       </div>
       {/* <Footer /> */}

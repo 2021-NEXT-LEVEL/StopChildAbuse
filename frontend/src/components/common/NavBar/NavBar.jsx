@@ -11,7 +11,7 @@ function NavBar() {
   const user_menu = ["Documents", "Request", "Result"]; // 1
   const admin_menu = ["Check Request", "Check Result"]; // 2
   const user_url = ["/user/documents", "/user/request", "/user/result"];
-  const admin_url = ["/admin/checkRequest", "/admin/checkResult"];
+  const admin_url = ["/master/checkRequest", "/master/checkResult"];
   const movePage = (url) => {
     history.push(url);
   };

@@ -24,7 +24,7 @@ function ResultPage() {
     // console.log(parseInt(window.location.pathname.replace(/[^0-9]/g, "")));
     let variables = {
       session_id: localStorage.getItem("id"),
-      post_id: postID,
+      postID: postID,
     };
 
     Axios.post(`user/result/${postID}/`, variables)

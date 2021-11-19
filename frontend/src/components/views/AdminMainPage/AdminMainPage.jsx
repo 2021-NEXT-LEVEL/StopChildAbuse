@@ -20,7 +20,7 @@ function AdminMainPage() {
           <Col
             className={styles.col}
             span={12}
-            onClick={() => movePage("/admin/checkRequest")}
+            onClick={() => movePage("/master/checkRequest")}
           >
             <div className={styles.inner_col}>
               <img
@@ -38,7 +38,7 @@ function AdminMainPage() {
           <Col
             className={styles.col}
             span={12}
-            onClick={() => movePage("/admin/checkResult")}
+            onClick={() => movePage("/master/checkResult")}
           >
             <div className={styles.inner_col}>
               <img

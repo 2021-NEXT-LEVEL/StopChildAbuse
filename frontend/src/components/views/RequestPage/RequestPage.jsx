@@ -3,23 +3,26 @@ import Axios from "@api/index";
 import styles from "@requestpage/RequestPage.module.css";
 import TitleBar from "@titlebar/TitleBar";
 import Paper from "@mui/material/Paper";
+import moment from "moment";
 import { Form, Input, DatePicker, Button } from "antd";
 
 function RequestPage() {
   const { TextArea } = Input;
+  const dateFormat = "YYYY-MM-DD";
   const onFinish = (values) => {
     let current = new Date();
     let variables = {
-      session_id: localStorage.id,
-      request_date: values.request_date._d,
+      session_id: localStorage.getItem("id"),
+      request_date: moment(values.request_date._d).format("YYYY-MM-DD"),
       center_name: values.center_name,
-      date: current,
+      date: moment(current).format("YYYY-MM-DD"),
       child_name: values.child_name,
       request_reason: values.request_reason,
       process_state: "0",
       check: "0",
     };
     console.log(variables);
+    console.log(moment(values.request_date._d, dateFormat));
 
     Axios.post("user/request/", variables).then((res) => {
       console.log(res);

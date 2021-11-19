@@ -53,22 +53,22 @@ class showRequestList(generics.ListCreateAPIView):
     def post(self, request):
         data = json.loads(request.body)
         queryset = Request.objects.filter(user_id=data['session_id'])
-        return JsonResponse({'data' : queryset.values()[0]}, status = 200)
+        return JsonResponse(list(queryset.values()), status = 200, safe = False)
 
 #사용자 요청 기록
 class showRequest(generics.CreateAPIView):
-    def post(self, request):
+    def post(self, request, postID = False):
         data = json.loads(request.body)
         queryset = Request.objects.filter(user_id=data['session_id'])
         post_num = self.kwargs['postID']
-        return JsonResponse({'data' : queryset.values()[0][post_num - 1]}, status = 200)
+        return JsonResponse(queryset.values()[post_num - 1], status = 200)
 
 
 #전체 사용자의 요청 기록 리스트
-class checkRequest(generics.CreateAPIView):
-    requests = Request.objects.all()
-    serializer_class = RequestSerializer
-    queryset = Request.objetcs.all()
+class checkRequest(generics.ListCreateAPIView):
+    def get(self, request):
+        queryset = Request.objects.all()
+        return JsonResponse(list(queryset.values()), status = 200, safe = False)
 
 #사용자 요청 기록 승인 및 거부
 class confirmRequest(generics.CreateAPIView):

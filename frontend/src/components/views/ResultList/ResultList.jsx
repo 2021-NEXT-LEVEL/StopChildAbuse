@@ -20,7 +20,7 @@ function ResultList() {
     },
     {
       title: "어린이집 이름",
-      dataIndex: "name",
+      dataIndex: "center_name",
       width: 400,
     },
     {
@@ -29,7 +29,7 @@ function ResultList() {
     },
     {
       title: "진행 상황",
-      dataIndex: "progress",
+      dataIndex: "process_state",
       width: 150,
     },
   ];
@@ -47,6 +47,11 @@ function ResultList() {
           setListData(res.data);
         } else {
           alert("GET failed");
+        }
+      })
+      .then(() => {
+        for (var i = 0; i < listData.length; i++) {
+          listData[i].no = i;
         }
       })
       .catch((err) => {
@@ -77,6 +82,7 @@ function ResultList() {
                 };
               }}
             />
+            )
           </div>
         </div>
       </Paper>
