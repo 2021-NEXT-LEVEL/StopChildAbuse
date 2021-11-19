@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class OutputVideo(models.Model):
-    output_id = models.IntegerField(primary_key=True)
+    output_id = models.AutoField(primary_key=True)
     request_id = models.IntegerField()
     video_id = models.IntegerField()
     output_source = models.CharField(max_length=100)
@@ -14,7 +14,7 @@ class OutputVideo(models.Model):
 
 
 class Request(models.Model):
-    request_id = models.IntegerField(primary_key=True)
+    request_id = models.AutoField(primary_key=True)
     user_id = models.IntegerField()
     user_name = models.CharField(max_length=20)
     request_date = models.DateField()
