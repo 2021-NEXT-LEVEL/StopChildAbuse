@@ -59,7 +59,7 @@ function NavBar() {
                 </Menu.Item>
               );
             })}
-          <div className={styles.loginBtn} onClick={() => movePage("/login")}>
+          <div className={styles.loginBtn} onClick={() => movePage("/")}>
             로그인하시겠습니까?
           </div>
         </Menu>

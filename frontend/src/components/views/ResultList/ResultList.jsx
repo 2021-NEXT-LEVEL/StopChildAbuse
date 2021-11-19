@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from "react";
+import Axios from "@api/index";
 import styles from "@resultlist/ResultList.module.css";
 import { useHistory } from "react-router-dom";
 import TitleBar from "@titlebar/TitleBar";
 import Paper from "@mui/material/Paper";
 import { Input, DatePicker, Button, Pagination, Table } from "antd";
-import { ListData } from "@resultlist/sections/ListData";
 
 function ResultList() {
+  const [listData, setListData] = useState();
   const history = useHistory();
-  const { RangePicker } = DatePicker;
-  const { TextArea } = Input;
-  const [cnt, setCnt] = useState(10 - ListData.length);
-  const onChange = () => {};
   const moveResultPage = (idx) => {
     history.push(`/user/result/${idx}`);
   };
@@ -37,6 +34,26 @@ function ResultList() {
     },
   ];
 
+  useEffect(() => {
+    let variables = {
+      session_id: localStorage.getItem("id"),
+    };
+
+    Axios.post("user/result/", variables)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          console.log("GET success");
+          setListData(res.data);
+        } else {
+          alert("GET failed");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div className={styles.container}>
       <Paper className={styles.paper} elevation={0}>
@@ -50,7 +67,7 @@ function ResultList() {
               rowClassName={styles.table_row}
               size="small"
               columns={columns}
-              dataSource={ListData}
+              dataSource={listData}
               pagination={{ pageSize: 10 }}
               onRow={(record, rowIndex) => {
                 return {
