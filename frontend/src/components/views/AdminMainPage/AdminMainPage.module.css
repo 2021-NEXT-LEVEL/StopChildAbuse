@@ -66,6 +66,7 @@
 }
 
 .admin_rightside {
+  width: 500px;
   padding-left: 50px;
   padding-right: 50px;
 }

@@ -82,7 +82,6 @@ function ResultList() {
                 };
               }}
             />
-            )
           </div>
         </div>
       </Paper>

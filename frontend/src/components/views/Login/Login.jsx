@@ -39,20 +39,26 @@ function Login() {
     Axios.post("login/", variables).then((res) => {
       console.log(res);
       if (res.status === 200) {
-        console.log("login success");
-        localStorage.setItem("id", res.data.data.user_id);
-        localStorage.setItem("name", res.data.data.name);
-        console.log(localStorage);
-        history.push("/user/main");
-      } else {
-        alert("login failed");
+        if (res.data.message === "incorrect") {
+          window.alert("아이디/비밀번호를 다시 확인하세요.");
+        } else {
+          localStorage.setItem("id", res.data.data.user_id);
+          localStorage.setItem("name", res.data.data.name);
+          if (res.data.data.name === "admin") {
+            console.log(localStorage);
+            window.location.replace("/master/main");
+          } else {
+            console.log(localStorage);
+            window.location.replace("/user/main");
+          }
+        }
       }
     });
   };
 
   useEffect(() => {
     localStorage.clear();
-    // console.log(localStorage);
+    console.log(localStorage);
   }, []);
 
   return (
