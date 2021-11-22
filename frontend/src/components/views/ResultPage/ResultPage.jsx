@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import styles from "@result/ResultPage.module.css";
 import TitleBar from "@titlebar/TitleBar";
 import Paper from "@mui/material/Paper";
-import { Input, Row, Col, Button } from "antd";
+import { Input, Row, Col, Button, Form } from "antd";
 import { DownloadOutlined } from "@ant-design/icons";
 
 function ResultPage() {
@@ -18,10 +18,19 @@ function ResultPage() {
   const [requestReason, setRequestReason] = useState();
   const [decodingKey, setDecodingKey] = useState();
   const [output, setOutput] = useState();
+  const [show, setShow] = useState(0);
 
   const history = useHistory();
+
+  const onFinish = (values) => {
+    if (values.decoding_key === decodingKey) {
+      setShow(1);
+    } else {
+      window.alert("복호화 키를 다시 입력하세요.");
+    }
+  };
+
   useEffect(() => {
-    // console.log(parseInt(window.location.pathname.replace(/[^0-9]/g, "")));
     let variables = {
       session_id: localStorage.getItem("id"),
       postID: postID,
@@ -76,26 +85,47 @@ function ResultPage() {
             </font>
           </div>
           <Row gutter={[16, 16]}>
-            <Col span={14}>
-              <div className={styles.video}></div>
-            </Col>
-            <Col span={10}>
+            <Col span={12}>
               <div className={styles.keyInput}>
-                <b>복호화 키 입력</b>
-                <div>
-                  <Input style={{ width: "80%" }} />
-                </div>
+                <Form onFinish={onFinish}>
+                  <b>복호화 키 입력</b>
+                  <div>
+                    <Form.Item name="decoding_key">
+                      <Input style={{ width: "75%" }} />
+                    </Form.Item>
+                  </div>
+                  <Button
+                    type="primary"
+                    className={styles.inputBtn}
+                    htmlType="submit"
+                  >
+                    입력
+                  </Button>
+                </Form>
+                {show === 1 && (
+                  <>
+                    <div>Download 버튼 클릭 시 영상이 다운됩니다.</div>
+                    <Button
+                      type="primary"
+                      icon={<DownloadOutlined />}
+                      size="large"
+                      className={styles.downloadButton}
+                    >
+                      Download
+                    </Button>
+                  </>
+                )}
               </div>
-              <Button
-                type="primary"
-                icon={<DownloadOutlined />}
-                size="large"
-                className={styles.downloadButton}
-              >
-                Download
-              </Button>
             </Col>
+            <Col span={10}></Col>
           </Row>
+          <Button
+            size="large"
+            className={styles.submitBtn}
+            onClick={() => history.push("/user/result")}
+          >
+            나가기
+          </Button>
         </div>
       </Paper>
     </div>

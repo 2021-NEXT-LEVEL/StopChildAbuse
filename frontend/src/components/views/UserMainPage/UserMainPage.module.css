@@ -4,7 +4,12 @@
 
 .sitemap {
   width: 100%;
-  height: 800px;
+  height: 610px;
+  display: flex;
+}
+
+.mainImg {
+  object-fit: cover;
 }
 
 .bottom_lbox {

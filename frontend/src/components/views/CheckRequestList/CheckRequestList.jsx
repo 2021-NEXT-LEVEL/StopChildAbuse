@@ -9,6 +9,7 @@ import { ListData } from "@checkRequestList/sections/ListData";
 
 function CheckRequestList() {
   const history = useHistory();
+  const [rowCount, setRowCount] = useState();
   const [listData, setListData] = useState([]);
   const moveResultPage = (idx) => {
     history.push(`/master/checkRequest/${idx}`);
@@ -41,21 +42,30 @@ function CheckRequestList() {
     },
   ];
 
+  const setList = (list) => {
+    list.map((item, idx) => {
+      item.no = idx + 1;
+
+      if (item.process_state === 0 || item.process_state === "승인대기") {
+        item.process_state = "승인대기";
+      } else if (item.process_state === 1 || item.process_state === "완료") {
+        item.process_state = "완료";
+      } else {
+        item.process_state = "승인거부";
+      }
+    });
+    return list;
+  };
+
   useEffect(() => {
-    Axios.get("master/checkRequest/")
-      .then((res) => {
-        if (res.status === 200) {
-          console.log(res);
-          setListData(res.data);
-        } else {
-          alert("register failed");
-        }
-      })
-      .then(() => {
-        for (var i = 0; i < listData.length; i++) {
-          listData[i].no = i;
-        }
-      });
+    Axios.get("master/checkRequest/").then((res) => {
+      if (res.status === 200) {
+        setRowCount(res.data.length);
+        setListData(res.data.reverse());
+      } else {
+        alert("register failed");
+      }
+    });
   }, []);
 
   return (
@@ -71,12 +81,12 @@ function CheckRequestList() {
               rowClassName={styles.table_row}
               size="small"
               columns={columns}
-              dataSource={listData}
+              dataSource={setList(listData).reverse()}
               pagination={{ pageSize: 10 }}
               onRow={(record, rowIndex) => {
                 return {
                   onClick: (event) => {
-                    moveResultPage(rowIndex + 1);
+                    moveResultPage(rowCount - rowIndex);
                   },
                 };
               }}

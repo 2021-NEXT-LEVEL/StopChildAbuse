@@ -13,6 +13,7 @@ function RequestPage() {
     let current = new Date();
     let variables = {
       session_id: localStorage.getItem("id"),
+      user_name: localStorage.getItem("name"),
       request_date: moment(values.request_date._d).format("YYYY-MM-DD"),
       center_name: values.center_name,
       date: moment(current).format("YYYY-MM-DD"),
@@ -28,6 +29,8 @@ function RequestPage() {
       console.log(res);
       if (res.status === 200) {
         console.log("Request success");
+        window.alert("요청이 접수되었습니다.");
+        window.location.reload();
       } else {
         alert("Request failed");
       }

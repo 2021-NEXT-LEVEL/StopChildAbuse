@@ -44,7 +44,7 @@ function Login() {
         } else {
           localStorage.setItem("id", res.data.data.user_id);
           localStorage.setItem("name", res.data.data.name);
-          if (res.data.data.name === "admin") {
+          if (res.data.data.name === "관리자") {
             console.log(localStorage);
             window.location.replace("/master/main");
           } else {

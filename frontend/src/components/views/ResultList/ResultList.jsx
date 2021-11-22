@@ -8,6 +8,7 @@ import { Input, DatePicker, Button, Pagination, Table } from "antd";
 
 function ResultList() {
   const [listData, setListData] = useState();
+  const [rowCount, setRowCount] = useState();
   const history = useHistory();
   const moveResultPage = (idx) => {
     history.push(`/user/result/${idx}`);
@@ -34,6 +35,22 @@ function ResultList() {
     },
   ];
 
+  const setList = (list) => {
+    console.log(list);
+    list.map((item, idx) => {
+      item.no = idx + 1;
+
+      if (item.process_state === 0 || item.process_state === "승인대기") {
+        item.process_state = "승인대기";
+      } else if (item.process_state === 1 || item.process_state === "완료") {
+        item.process_state = "완료";
+      } else {
+        item.process_state = "승인거부";
+      }
+    });
+    return list;
+  };
+
   useEffect(() => {
     let variables = {
       session_id: localStorage.getItem("id"),
@@ -43,15 +60,10 @@ function ResultList() {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          console.log("GET success");
-          setListData(res.data);
+          setRowCount(res.data.length);
+          setListData(res.data.reverse());
         } else {
           alert("GET failed");
-        }
-      })
-      .then(() => {
-        for (var i = 0; i < listData.length; i++) {
-          listData[i].no = i;
         }
       })
       .catch((err) => {
@@ -68,20 +80,22 @@ function ResultList() {
             사용자 본인의 요청 리스트 및 진행 상황을 확인 가능합니다.
           </div>
           <div className={styles.outer_box}>
-            <Table
-              rowClassName={styles.table_row}
-              size="small"
-              columns={columns}
-              dataSource={listData}
-              pagination={{ pageSize: 10 }}
-              onRow={(record, rowIndex) => {
-                return {
-                  onClick: (event) => {
-                    moveResultPage(rowIndex + 1);
-                  },
-                };
-              }}
-            />
+            {listData && (
+              <Table
+                rowClassName={styles.table_row}
+                size="small"
+                columns={columns}
+                dataSource={setList(listData).reverse()}
+                pagination={{ pageSize: 10 }}
+                onRow={(record, rowIndex) => {
+                  return {
+                    onClick: (event) => {
+                      moveResultPage(rowCount - rowIndex);
+                    },
+                  };
+                }}
+              />
+            )}
           </div>
         </div>
       </Paper>

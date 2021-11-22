@@ -21,7 +21,7 @@ function App() {
       <div
         style={{
           padding: "80px 50px 0px 0px",
-          minHeight: "1000px",
+          minHeight: "750px",
         }}
       >
         <Switch>
@@ -46,7 +46,7 @@ function App() {
           <Route exact path="/master/checkResult" component={CheckResult} />
         </Switch>
       </div>
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
   );
 }
