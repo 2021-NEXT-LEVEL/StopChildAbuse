@@ -21,8 +21,8 @@ function RequestPage() {
       process_state: "0",
       check: "0",
     };
-    console.log(variables);
-    console.log(moment(values.request_date._d, dateFormat));
+    // console.log(variables);
+    // console.log(moment(values.request_date._d, dateFormat));
 
     Axios.post("user/request/", variables).then((res) => {
       console.log(res);

@@ -51,10 +51,16 @@ function Register() {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          console.log("register success");
-          history.push("/");
+          if (res.data.message === "duplication") {
+            window.alert("이미 가입된 이메일입니다.");
+            window.location.reload();
+          } else {
+            // success
+            window.alert("회원가입에 성공했습니다.");
+            history.push("/");
+          }
         } else {
-          alert("register failed");
+          window.alert("회원가입에 실패했습니다.");
         }
       })
       .catch((err) => {

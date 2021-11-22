@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "@userMain/UserMainPage.module.css";
 import { Row, Col, Result, Button } from "antd";
@@ -8,6 +8,11 @@ function UserMainPage() {
   const movePage = (url) => {
     history.push(url);
   };
+
+  useEffect(() => {
+    // window.location.reload();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.sitemap}>사이트 소개</div>

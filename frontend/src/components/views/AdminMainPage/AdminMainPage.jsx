@@ -19,7 +19,7 @@ function AdminMainPage() {
         <Row gutter={[16, 16]} className={styles.admin_rightside}>
           <Col
             className={styles.col}
-            span={12}
+            span={24}
             onClick={() => movePage("/master/checkRequest")}
           >
             <div className={styles.inner_col}>
@@ -35,7 +35,7 @@ function AdminMainPage() {
               </div>
             </div>
           </Col>
-          <Col
+          {/* <Col
             className={styles.col}
             span={12}
             onClick={() => movePage("/master/checkResult")}
@@ -50,7 +50,7 @@ function AdminMainPage() {
                 암호화 된 영상 확인이 가능합니다.
               </div>
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </div>
     </div>
