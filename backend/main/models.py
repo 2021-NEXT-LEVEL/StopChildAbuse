@@ -4,9 +4,9 @@ from django.db import models
 class OutputVideo(models.Model):
     output_id = models.AutoField(primary_key=True)
     request_id = models.IntegerField()
-    video_id = models.IntegerField()
-    output_source = models.CharField(max_length=100)
-    decoding_key = models.CharField(max_length=200)
+    input_souce = models.CharField(max_length=50, blank=True, null=True)
+    output_source = models.CharField(max_length=50, blank=True, null=True)
+    count_child = models.IntegerField()
 
     class Meta:
         managed = False
@@ -22,7 +22,7 @@ class Request(models.Model):
     date = models.DateField()
     child_name = models.CharField(max_length=20)
     request_reason = models.CharField(max_length=200)
-    process_state = models.IntegerField()
+    reject_reason = models.CharField(max_length=200, blank=True, null=True)
     check = models.IntegerField()
 
     class Meta:
@@ -41,13 +41,3 @@ class User(models.Model):
     class Meta:
         managed = False
         db_table = 'user'
-
-
-class Video(models.Model):
-    video_id = models.IntegerField(primary_key=True)
-    center_name = models.CharField(max_length=20)
-    date = models.DateField()
-
-    class Meta:
-        managed = False
-        db_table = 'video'

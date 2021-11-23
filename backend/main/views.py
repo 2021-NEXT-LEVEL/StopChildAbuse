@@ -1,7 +1,7 @@
 from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from rest_framework import generics
-from .models import User, OutputVideo, Request, Video
+from .models import User, OutputVideo, Request
 from django.http.response import  JsonResponse
 from .serializers import OutputVideoSerializer, RequestSerializer, VideoSerializer
 import json
@@ -76,9 +76,10 @@ class requestList(generics.ListCreateAPIView):
 #사용자 요청 기록 승인 및 거부
 class checkedRequest(generics.CreateAPIView):
     def post(self, request, postID = False):
-        queryset = Request.objects.all()
+        queryset_req = Request.objects.all()
         post_num = self.kwargs['postID']
-        return JsonResponse(queryset.values()[post_num - 1], status = 200)
+        queryset_video = OutputVideo.objects.filter(request_id=postID-1)
+        return JsonResponse({'req': queryset_req.values()[post_num - 1], 'video': queryset_video.values()[0]}, status = 200)
 
 class confirmRequest(generics.CreateAPIView):
     def post(self, request, postID = False):
@@ -87,6 +88,7 @@ class confirmRequest(generics.CreateAPIView):
         print(post_num)
         req = Request.objects.get(request_id=post_num)
         req.check = data['check']
+        req.reject_reason = data['reject_reason']
         req.save()
         return JsonResponse({}, status = 200)
 

@@ -7,9 +7,9 @@ class OutputVideoSerializer(serializers.ModelSerializer):
         fields = (
             'output_id',
             'request_id',
-            'video_id',
+            'input_souce',
             'output_source',
-            'decoding_key',
+            'count_child',
         )
 
 class RequestSerializer(serializers.ModelSerializer):
@@ -24,7 +24,7 @@ class RequestSerializer(serializers.ModelSerializer):
             'date',
             'child_name',
             'request_reason',
-            'process_state',
+            'reject_reason',
             'check',
         )    
 
@@ -38,13 +38,4 @@ class UserSerializer(serializers.ModelSerializer):
             'name',
             'phone',
             'child_name',
-        )   
-
-class VideoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Video
-        fields = (
-            'video_id',
-            'center_name',
-            'date',
         )   
