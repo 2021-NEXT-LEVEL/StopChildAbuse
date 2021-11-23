@@ -44,4 +44,5 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 ```
 <br/>
 
-colab용 코드 : https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM#scrollTo=tCPF38tIZ47g
+- colab용 코드
+https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM#scrollTo=tCPF38tIZ47g
