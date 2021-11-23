@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import OutputVideo, Request, User, Video
+from .models import OutputVideo, Request, User
 
 class OutputVideoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,6 +10,7 @@ class OutputVideoSerializer(serializers.ModelSerializer):
             'input_souce',
             'output_source',
             'count_child',
+            'selectnum',
         )
 
 class RequestSerializer(serializers.ModelSerializer):
@@ -26,6 +27,7 @@ class RequestSerializer(serializers.ModelSerializer):
             'request_reason',
             'reject_reason',
             'check',
+            'selectnum',
         )    
 
 class UserSerializer(serializers.ModelSerializer):

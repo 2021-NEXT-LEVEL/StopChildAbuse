@@ -7,6 +7,7 @@ class OutputVideo(models.Model):
     input_souce = models.CharField(max_length=50, blank=True, null=True)
     output_source = models.CharField(max_length=50, blank=True, null=True)
     count_child = models.IntegerField()
+    selectnum = models.IntegerField(db_column='selectNum', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -24,6 +25,7 @@ class Request(models.Model):
     request_reason = models.CharField(max_length=200)
     reject_reason = models.CharField(max_length=200, blank=True, null=True)
     check = models.IntegerField()
+    selectnum = models.IntegerField(db_column='selectNum', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False

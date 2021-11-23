@@ -8,6 +8,6 @@ urlpatterns = [
     path('user/result/<int:postID>/', views.showRequest.as_view()),
     path('master/checkRequest/', views.requestList.as_view()),
     path('master/checkRequest/<int:postID>/', views.checkedRequest.as_view()),
-    path('master/confirmRequest/<int:postID>/', views.confirmRequest.as_view()),
-    path('master/selectChild/', views.selectChild.as_view()),
+    path('master/rejectRequest/<int:postID>/', views.rejectRequest.as_view()),
+    path('master/allowRequest/', views.allowRequest.as_view()),
 ]
