@@ -5,3 +5,7 @@ Django
 djangorestframework
 django-cors-headers
 mysqlclient
+
+# image processing----------------
+opencv-python
+pycryptodome
