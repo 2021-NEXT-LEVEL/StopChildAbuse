@@ -24,15 +24,15 @@ val: ../valid/images
 
 [수정]
 train: {저장 경로}/yolov5/train.txt
-val: {저장 경로}/content/yolov5/test.txt
-
+val: {저장 경로}/yolov5/test.txt
+--------------------
 [GPU 서버용]
 train: D:/11_23_yolo/yolov5/train.txt
 val: D:/11_23_yolo/yolov5/test.txt
 ```
 <br/>
 
-- maketxt.py를 yolov5 폴더 안으로 옮긴 후 실행
+- maketxt.py를 yolov5 폴더 안으로 옮긴 후 실행 --> train.txt, test.txt 생성
 ```
 $ python maketxt.py
 ```
@@ -44,5 +44,5 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 ```
 <br/>
 
-- colab용 코드
-https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM#scrollTo=tCPF38tIZ47g
+- colab 코드
+https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM?userstoinvite=minjjung9642%40gmail.com&actionButton=1#scrollTo=tCPF38tIZ47g
