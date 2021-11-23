@@ -23,8 +23,12 @@ train: ../train/images
 val: ../valid/images
 
 [수정]
-train: /content/yolov5/train.txt
-val: /content/yolov5/test.txt
+train: {저장 경로}/yolov5/train.txt
+val: {저장 경로}/content/yolov5/test.txt
+
+[GPU 서버용]
+train: D:/11_23_yolo/yolov5/train.txt
+val: D:/11_23_yolo/yolov5/test.txt
 ```
 <br/>
 
@@ -36,8 +40,8 @@ $ python maketxt.py
 
 - 실행
 ```
-$ python train.py --img 416 --batch 16 --epochs 100 --data /content/yolov5/data.yaml --weights yolov5s.pt --name result --cfg ./models/yolov5s.yaml
+$ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights yolov5s.pt --name result --cfg ./models/yolov5s.yaml
 ```
 <br/>
 
-colab : https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM#scrollTo=tCPF38tIZ47g
+colab용 코드 : https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM#scrollTo=tCPF38tIZ47g
