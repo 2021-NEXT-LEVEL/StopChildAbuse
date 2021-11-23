@@ -15,7 +15,9 @@ function UserMainPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.sitemap}>사이트 소개</div>
+      <div className={styles.sitemap}>
+        <img classname={styles.mainImg} src="/assets/main.png" />
+      </div>
       <div className={styles.bottom_lbox}>
         <hr className={styles.hor_line} />
         <div>해당 서비스는 아동학대 방지를</div>

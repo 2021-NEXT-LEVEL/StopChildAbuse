@@ -1,10 +1,15 @@
 .logo {
-  width: 100px;
+  width: 160px;
   height: 30px;
   margin: 18px 20px 0px 0px;
-  background-color: white;
+  display: flex;
   float: left;
   cursor: pointer;
+}
+
+.logoImg {
+  width: 150px;
+  object-fit: cover;
 }
 
 .loginBtn {

@@ -10,7 +10,9 @@ function AdminMainPage() {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.sitemap}>사이트 소개</div>
+      <div className={styles.sitemap}>
+        <img classname={styles.mainImg} src="/assets/main.png" />
+      </div>
       <div className={styles.bottom_lbox}>
         <hr className={styles.hor_line} />
         <div>관리자 계정에 오신 것을 환영합니다.</div>

@@ -32,8 +32,9 @@ function NavBar() {
   );
 
   useEffect(() => {
+    console.log(localStorage);
     if (localStorage.length === 0) setState(0);
-    else if (localStorage.name === "admin") setState(2);
+    else if (localStorage.name === "관리자") setState(2);
     else setState(1);
   }, []);
 
@@ -48,16 +49,21 @@ function NavBar() {
         }}
       >
         {state === 0 && (
-          <div className={styles.logo} onClick={() => movePage("/")} />
+          <div className={styles.logo} onClick={() => movePage("/")}>
+            <img src="/assets/logo.png" className={styles.logoImg} />
+          </div>
         )}
         {state === 1 && (
-          <div className={styles.logo} onClick={() => movePage("/user/main")} />
+          <div className={styles.logo} onClick={() => movePage("/user/main")}>
+            {" "}
+            <img src="/assets/logo.png" className={styles.logoImg} />
+          </div>
         )}
         {state === 2 && (
-          <div
-            className={styles.logo}
-            onClick={() => movePage("/master/main")}
-          />
+          <div className={styles.logo} onClick={() => movePage("/master/main")}>
+            {" "}
+            <img src="/assets/logo.png" className={styles.logoImg} />
+          </div>
         )}
         <Menu
           theme="dark"
@@ -74,7 +80,7 @@ function NavBar() {
                   </Menu.Item>
                 );
               })
-            : localStorage.name !== "admin"
+            : localStorage.name !== "관리자"
             ? user_menu.map((submenu, idx) => {
                 const key = idx;
                 return (

@@ -39,6 +39,10 @@
   background-color: black;
 }
 
+.encodingBtn {
+  margin: 10px 0px 0px 20px;
+}
+
 .submitBtn {
   margin: 10px 0px 0px 860px;
 }
