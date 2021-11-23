@@ -1,7 +1,8 @@
 ﻿# StopChildAbuse
 2021 NIA 인공지능 데이터 활용 경진대회
+<br/><br/>
 
-## Model
+## Local Modeling
 - clone YOLOv5
 ```
 $ git clone https://github.com/ultralytics/yolov5
@@ -44,6 +45,5 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 ```
 <br/>
 
-- colab
-<br/>
+## Google Colab
 <a href="https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM?userstoinvite=minjjung9642%40gmail.com&actionButton=1#scrollTo=tCPF38tIZ47g"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
