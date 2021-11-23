@@ -10,9 +10,9 @@ $ pip install -r requirements.txt
 ```
 <br/>
 
-- dataset 다운로드(facedataset -> 로컬에 저장됨)
+- dataset 다운로드(facedataset -> 로컬에 저장)
 ```
-$ 
+https://drive.google.com/file/d/1F70qUfhkLA4lAVOJvlGbdRM5QwlAUQT0/view?usp=sharing
 ```
 <br/>
 
@@ -26,19 +26,11 @@ val: ../valid/images
 train: /content/yolov5/train.txt
 val: /content/yolov5/test.txt
 ```
+<br/>
 
-- dataset 정리 ->.py로 빼기
+- maketxt.py를 yolov5 폴더 안으로 옮긴 후 실행
 ```
-from glob import glob
-
-img_list = glob('./train/images/*.jpg')
-val_img_list = glob('./test/images/*.jpg')
-
-with open('./train.txt', 'w') as f:
-    f.write('\n'.join(img_list) + '\n')
-
-with open('./test.txt', 'w') as f:
-    f.write('\n'.join(val_img_list) + '\n')
+$ python maketxt.py
 ```
 <br/>
 
