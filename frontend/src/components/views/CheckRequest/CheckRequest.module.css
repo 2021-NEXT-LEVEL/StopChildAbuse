@@ -20,7 +20,6 @@
 .description {
   padding-bottom: 8px;
 }
-
 .outer_box {
   border: 2px solid #d9d9d9;
   border-radius: 10px;
@@ -36,13 +35,26 @@
 .video {
   width: 450px;
   height: 250px;
-  background-color: black;
+  border: 1px solid grey;
+  /* background-color: grey; */
+}
+
+.video_img {
+  width: 100%;
 }
 
 .encodingBtn {
   margin: 10px 0px 0px 20px;
 }
 
+.bottomBtn {
+  margin-left: 750px;
+}
+
 .submitBtn {
-  margin: 10px 0px 0px 860px;
+  margin-right: 10px;
+}
+
+.textarea {
+  padding-bottom: 20px;
 }
