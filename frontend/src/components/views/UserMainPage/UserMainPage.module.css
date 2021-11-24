@@ -1,5 +1,5 @@
 .container {
-  /* bottom: 0px; */
+  overflow-x: hidden;
 }
 
 .carousel {

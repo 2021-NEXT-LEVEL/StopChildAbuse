@@ -32,6 +32,7 @@ function AdminMainPage() {
         setAllow(allow);
         setTotalRequest(res.data);
         setTodayRequest(today);
+        setTotalUser(res.data.length - 1);
       }
     });
 
@@ -64,7 +65,7 @@ function AdminMainPage() {
                 title="오늘 요청 수"
                 value={todayRequest}
                 valueStyle={{ fontWeight: "bold" }}
-                suffix="명"
+                suffix="개"
               />
             </Card>
           </Col>
@@ -79,13 +80,23 @@ function AdminMainPage() {
           </Col>
           <Col span={6} className={styles.stat_col}>
             <Card>
-              <Statistic
-                title="전체 승인률"
-                value={allow / totalRequest.length}
-                precision={2}
-                valueStyle={{ color: "#3f8600", fontWeight: "bold" }}
-                suffix="%"
-              />
+              {totalRequest.length === 0 ? (
+                <Statistic
+                  title="전체 승인률"
+                  value={0}
+                  precision={2}
+                  valueStyle={{ color: "#3f8600", fontWeight: "bold" }}
+                  suffix="%"
+                />
+              ) : (
+                <Statistic
+                  title="전체 승인률"
+                  value={(allow / totalRequest.length) * 100}
+                  precision={2}
+                  valueStyle={{ color: "#3f8600", fontWeight: "bold" }}
+                  suffix="%"
+                />
+              )}
             </Card>
           </Col>
         </Row>

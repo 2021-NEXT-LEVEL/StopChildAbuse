@@ -32,7 +32,7 @@ function ResultPage() {
       request_id: requestID,
     };
 
-    Axios.post(`user/userDecode/${postID}/`, variables)
+    Axios.post(`user/userDecode/`, variables)
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
@@ -60,16 +60,16 @@ function ResultPage() {
       .then((res) => {
         console.log(res);
         if (res.status === 200) {
-          setRequestDate(res.data.request_date);
-          setCenterName(res.data.center_name);
-          setDate(res.data.date);
-          setChildName(res.data.child_name);
-          setRequestReason(res.data.request_reason);
-          setDecodingKey(res.data.decodingKey);
-          setOutput(res.data.ouput_source);
-          setCheckValue(res.data.check);
-          setRequestID(res.data.request_id);
-          setRejectReason(rejectReason);
+          setRequestDate(res.data.req.request_date);
+          setCenterName(res.data.req.center_name);
+          setDate(res.data.req.date);
+          setChildName(res.data.req.child_name);
+          setRequestReason(res.data.req.request_reason);
+          setDecodingKey(res.data.encrypt);
+          setOutput(res.data.req.ouput_source);
+          setCheckValue(res.data.req.check);
+          setRequestID(res.data.req.request_id);
+          setRejectReason(res.data.req.reject_reason);
         } else {
           alert("GET failed");
         }
@@ -156,8 +156,8 @@ function ResultPage() {
               <div className={styles.outer_box}>
                 <Result status="error" title="승인 거절되었습니다." />
               </div>
+              <div style={{ paddingBottom: "10px" }}>거절 사유</div>
               <div className={styles.outer_box}>
-                <div>거절 사유</div>
                 <div>{rejectReason}</div>
               </div>
             </>

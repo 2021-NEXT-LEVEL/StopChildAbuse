@@ -16,20 +16,15 @@ function UserInfoList() {
       width: 100,
     },
     {
-      title: "회원 아이디",
-      dataIndex: "user_id",
-      width: 200,
-    },
-    {
       title: "학부모 이름",
       dataIndex: "name",
-      width: 200,
+      width: 300,
     },
 
     {
       title: "이메일",
       dataIndex: "email",
-      width: 200,
+      width: 400,
     },
     {
       title: "핸드폰번호",
@@ -39,12 +34,11 @@ function UserInfoList() {
     {
       title: "자녀 이름",
       dataIndex: "child_name",
-      width: 400,
+      width: 300,
     },
   ];
 
   const setList = (list) => {
-    console.log(list);
     list.map((item, idx) => {
       item.no = idx + 1;
     });
@@ -54,7 +48,7 @@ function UserInfoList() {
   useEffect(() => {
     Axios.get("master/getUserList/").then((res) => {
       if (res.status === 200) {
-        setListData(res.data);
+        setListData(res.data.slice(1, res.data.length));
       } else {
         alert("register failed");
       }

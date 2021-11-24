@@ -20,7 +20,7 @@ function App() {
       <div
         style={{
           padding: "80px 0px 0px 0px",
-          minHeight: "750px",
+          minHeight: "900px",
         }}
       >
         <Switch>

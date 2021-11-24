@@ -3,18 +3,7 @@ import Axios from "@api/index";
 import styles from "@checkRequest/CheckRequest.module.css";
 import TitleBar from "@titlebar/TitleBar";
 import Paper from "@mui/material/Paper";
-import {
-  Form,
-  Radio,
-  Row,
-  Col,
-  Button,
-  Space,
-  Input,
-  Result,
-  Progress,
-} from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
+import { Radio, Row, Col, Button, Space, Input, Result } from "antd";
 
 function ResultPage() {
   const [postID, setPostID] = useState(
@@ -35,6 +24,7 @@ function ResultPage() {
 
   const onChange = (e) => {
     setCheckValue(e.target.value);
+    console.log(e.target.value);
     if (e.target.value === 1) {
       setShow(1);
     } else {
@@ -47,7 +37,6 @@ function ResultPage() {
   };
 
   const onInputRejectReason = (e) => {
-    // console.log("onInputRejectReason: ", e.target.value);
     setRejectReason(e.target.value);
   };
 
@@ -57,11 +46,11 @@ function ResultPage() {
       // 적절
       let variables = {
         check: checkValue === 1 ? 1 : -1,
-        requestID: requestID,
+        request_id: requestID,
         selectedNum: selectedNum,
       };
 
-      Axios.post(`master/selectChild/`, variables)
+      Axios.post(`master/allowRequest/`, variables)
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
@@ -82,7 +71,7 @@ function ResultPage() {
         reject_reason: rejectReason,
       };
 
-      Axios.post(`master/confirmRequest/${postID}/`, variables)
+      Axios.post(`master/rejectRequest/${postID}/`, variables)
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
@@ -105,10 +94,10 @@ function ResultPage() {
 
     Axios.post(`master/checkRequest/${postID}/`, variables)
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
-          setValues(res.data);
-          setRequestID(res.data.request_id);
+          console.log(res.data.req);
+          setValues(res.data.req);
+          setRequestID(res.data.req.request_id);
         } else {
           alert("GET failed");
         }
@@ -154,15 +143,37 @@ function ResultPage() {
               </Radio>
             </Radio.Group>
             <br />
-            <Button
-              type="primary"
-              onClick={toggleDisabled}
-              style={{ marginTop: 16 }}
-            >
-              적절성 유무 판단
-            </Button>
+            {values && values.check === 0 ? (
+              <Button
+                type="primary"
+                onClick={toggleDisabled}
+                style={{ marginTop: 16 }}
+              >
+                적절성 유무 판단
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                onClick={toggleDisabled}
+                disabled
+                style={{ marginTop: 16 }}
+              >
+                적절성 유무 판단
+              </Button>
+            )}
           </div>
-          {/* 적절성 체크 no인 경우 */}
+          {values && values.check === -1 ? (
+            <div className={styles.outer_box}>
+              <Result status="error" title="승인 거절되었습니다." />
+            </div>
+          ) : values && values.check === 1 ? (
+            <div className={styles.outer_box}>
+              <Result status="success" title="승인 완료되었습니다." />
+            </div>
+          ) : (
+            <></>
+          )}
+          {/* 적절성 체크 no인 경우  */}
           {show === 0 && (
             <div className={styles.outer_box}>
               <div style={{ paddingBottom: "10px" }}>부적절 사유 입력</div>
@@ -196,15 +207,6 @@ function ResultPage() {
                     <Radio value={4}>4</Radio>
                   </Space>
                 </Radio.Group>
-                {/* <Progress
-                type="circle"
-                percent={100}
-                format={() => "Done"}
-                className={styles.progress}
-              />
-              <div style={{ paddingTop: "20px" }}>
-                <b>암호화가 성공적으로 완료됐습니다.</b>
-              </div> */}
               </Col>
             </Row>
           )}
@@ -216,14 +218,26 @@ function ResultPage() {
             >
               나가기
             </Button>
-            <Button
-              type="primary"
-              size="large"
-              className={styles.submitBtn}
-              onClick={handleSubmit}
-            >
-              제출
-            </Button>
+            {values && values.check === 0 ? (
+              <Button
+                type="primary"
+                size="large"
+                className={styles.submitBtn}
+                onClick={handleSubmit}
+              >
+                제출
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                size="large"
+                className={styles.submitBtn}
+                onClick={handleSubmit}
+                disabled
+              >
+                제출
+              </Button>
+            )}
           </div>
         </div>
       </Paper>
