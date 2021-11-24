@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from rest_framework import generics
 from .models import User, OutputVideo, Request
 from django.http.response import  JsonResponse
-from .serializers import OutputVideoSerializer, RequestSerializer, UserSerializer
+from .crypto import AESCipher
 import json
 
 # Create your views here.
@@ -68,12 +68,32 @@ class showRequest(generics.CreateAPIView):
         # 복호화키 찾아서 front 넘겨주기. output_video 테이블에서 request_id 로 찾아서 넘겨주면 될듯
         post_num = self.kwargs['postID']
         if queryset.values()[post_num - 1]['check'] == 1: # 승인
-            # 암호화를 진행하면 됨. Request 테이블에 countChild 갖고 있고, selectNum 갖고 있음
-            queryset_video = OutputVideo.objects.filter(request_id=queryset.values()[post_num - 1]['request_id'], selectnum=queryset.values()[post_num - 1]['selectnum'])
-            return JsonResponse({'req' : queryset.values()[post_num - 1], 'video': queryset_video.values()[0]}, status = 200) # 추가로 암호화 키 넘겨주기
+            key = '123456789012345'
+            message = queryset.values()[post_num - 1]['selectnum']
+            aes = AESCipher(key)
+            encrypt = aes.encrypt(message) # encrypt = 8172awefvawef==
+            return JsonResponse({'req' : queryset.values()[post_num - 1], 'encrypt' : encrypt}, status = 200) # 추가로 암호화 키 넘겨주기
         else: # 거부 혹은 승인 요청
             return JsonResponse({'req' : queryset.values()[post_num - 1]}, status = 200)
-            
+
+# 사용자 암호 입력        
+class userDecode(generics.CreateAPIView):
+    def post(self, request):
+            data = json.loads(request.body)
+            input = data['input']
+            request_id = data['request_id']
+
+            key = '123456789012345'
+            aes = AESCipher(key)
+            decrypt = aes.decrypt(input) # decrypt = selectNum
+
+            queryset_video = OutputVideo.objects.filter(request_id=request_id, selectnum=decrypt)
+            if queryset_video:
+                return JsonResponse({'message': 'correct', 'video': queryset_video.values()[0]}, status = 200)
+            else:
+                return JsonResponse({'message': 'incorrect'}, status = 200)
+          
+
 #전체 사용자의 요청 기록 리스트
 class requestList(generics.ListCreateAPIView):
     def get(self, request):
@@ -108,15 +128,9 @@ class allowRequest(generics.CreateAPIView):
         req.selectnum = selectNum
         req.check = data['check']
         req.save()
-
-        # 몇명인지 확인을 해서 이에 해당하는 암호를 다 생성을 해
-        # 1~4까지 나온다 치면 selectNum에 해당하는 암호를 requestDB에다가 저장을해
-        # selectNum에 해당하는 암호를 저장
-        #output. 비디오 아이디
-        # output.output_source : 저장할 경로..??
-        #output.decoding_key = 암호화 함수 실행 시켜서 넘어오는 data['selectedNum'] 매칭 시켜서 걔 저장
         return JsonResponse({'message' : 'success'}, status = 200)
 
-# 암호화 함수
-
-# detect & tracking 함수
+class showUserList(generics.ListCreateAPIView):
+    def get(self, request):
+        queryset = User.objects.all()
+        return JsonResponse(list(queryset.values()), status = 200, safe = False)
