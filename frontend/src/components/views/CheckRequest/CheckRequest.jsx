@@ -15,6 +15,8 @@ function ResultPage() {
   const [requestID, setRequestID] = useState();
   const [selectedNum, setSelectedNum] = useState();
   const [show, setShow] = useState(-1);
+  const [countChild, setCountChild] = useState();
+  const [imgSource, setImgSource] = useState();
   const [rejectReason, setRejectReason] = useState();
   const { TextArea } = Input;
 
@@ -24,9 +26,27 @@ function ResultPage() {
 
   const onChange = (e) => {
     setCheckValue(e.target.value);
-    console.log(e.target.value);
     if (e.target.value === 1) {
       setShow(1);
+      let variables = {
+        postID: postID,
+      };
+
+      Axios.post(`master/checkRequest/${postID}/`, variables)
+        .then((res) => {
+          if (res.status === 200) {
+            console.log(res.data);
+            setCountChild(res.data.video.count_child);
+            setImgSource(
+              "/assets/results/" + res.data.video.request_id.toString() + ".png"
+            );
+          } else {
+            alert("GET failed");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     } else {
       setShow(0);
     }
@@ -95,7 +115,7 @@ function ResultPage() {
     Axios.post(`master/checkRequest/${postID}/`, variables)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data.req);
+          console.log(res.data);
           setValues(res.data.req);
           setRequestID(res.data.req.request_id);
         } else {
@@ -190,21 +210,25 @@ function ResultPage() {
           {/* 적절성 체크 yes인 경우 */}
           {show === 1 && (
             <Row gutter={[16, 16]}>
-              <Col span={14}>
+              <Col span={16}>
                 <div className={styles.video}>
-                  {/* <img src="/assets/sample.png" className={styles.video_img}/> */}
+                  {imgSource && (
+                    <img src={imgSource} className={styles.video_img} />
+                  )}
                 </div>
               </Col>
-              <Col span={10}>
+              <Col span={8}>
                 <div style={{ paddingBottom: "10px" }}>
-                  암호화에서 제외할 학부모 자녀의 인덱스를 선택하세요.
+                  암호화에서 제외할 아동의 인덱스를 선택하세요.
                 </div>
                 <Radio.Group onChange={onChangeSelectedNum} value={selectedNum}>
                   <Space direction="vertical">
-                    <Radio value={1}>1</Radio>
-                    <Radio value={2}>2</Radio>
-                    <Radio value={3}>3</Radio>
-                    <Radio value={4}>4</Radio>
+                    {countChild &&
+                      new Array(countChild).fill().map((_, idx) => (
+                        <Radio key={idx} value={idx + 1}>
+                          {idx + 1}
+                        </Radio>
+                      ))}
                   </Space>
                 </Radio.Group>
               </Col>

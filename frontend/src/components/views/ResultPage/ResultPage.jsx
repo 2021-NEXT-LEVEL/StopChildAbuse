@@ -37,6 +37,7 @@ function ResultPage() {
         console.log(res);
         if (res.status === 200) {
           if (res.data.message === "correct") {
+            window.alert("확인되었습니다.");
             setShow(1);
           } else {
             window.alert("키가 일치하지 않습니다.");

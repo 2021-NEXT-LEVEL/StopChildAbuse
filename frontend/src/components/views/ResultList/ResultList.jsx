@@ -90,7 +90,7 @@ function ResultList() {
                 onRow={(record, rowIndex) => {
                   return {
                     onClick: (event) => {
-                      moveResultPage(rowCount - rowIndex);
+                      moveResultPage(record.no);
                     },
                   };
                 }}
