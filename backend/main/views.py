@@ -69,30 +69,30 @@ class showRequest(generics.CreateAPIView):
         post_num = self.kwargs['postID']
         if queryset.values()[post_num - 1]['check'] == 1: # 승인
             key = '123456789012345'
-            message = queryset.values()[post_num - 1]['selectnum']
+            message = str(queryset.values()[post_num - 1]['selectnum'])
             aes = AESCipher(key)
             encrypt = aes.encrypt(message) # encrypt = 8172awefvawef==
             return JsonResponse({'req' : queryset.values()[post_num - 1], 'encrypt' : encrypt}, status = 200) # 추가로 암호화 키 넘겨주기
         else: # 거부 혹은 승인 요청
             return JsonResponse({'req' : queryset.values()[post_num - 1]}, status = 200)
 
-# 사용자 암호 입력        
+# 사용자 암호 입력
 class userDecode(generics.CreateAPIView):
     def post(self, request):
             data = json.loads(request.body)
-            input = data['input']
+            input = str(data['input'])
             request_id = data['request_id']
 
             key = '123456789012345'
             aes = AESCipher(key)
             decrypt = aes.decrypt(input) # decrypt = selectNum
 
-            queryset_video = OutputVideo.objects.filter(request_id=request_id, selectnum=decrypt)
+            queryset_video = OutputVideo.objects.filter(request_id=request_id, selectnum=int(decrypt))
             if queryset_video:
                 return JsonResponse({'message': 'correct', 'video': queryset_video.values()[0]}, status = 200)
             else:
                 return JsonResponse({'message': 'incorrect'}, status = 200)
-          
+
 
 #전체 사용자의 요청 기록 리스트
 class requestList(generics.ListCreateAPIView):
@@ -107,7 +107,10 @@ class checkedRequest(generics.CreateAPIView):
         queryset_req = Request.objects.all()
         post_num = self.kwargs['postID']
         queryset_video = OutputVideo.objects.filter(request_id=postID-1)
-        return JsonResponse({'req': queryset_req.values()[post_num - 1], 'video': queryset_video.values()[0]}, status = 200)
+        if queryset_video:
+            return JsonResponse({'req': queryset_req.values()[post_num - 1], 'video': queryset_video.values()[0]}, status = 200)
+        else:
+            return JsonResponse({'req': queryset_req.values()[post_num - 1]}, status = 200)
 
 class rejectRequest(generics.CreateAPIView):
     def post(self, request, postID = False):
@@ -123,7 +126,7 @@ class rejectRequest(generics.CreateAPIView):
 class allowRequest(generics.CreateAPIView):
     def post(self, request):
         data = json.loads(request.body)
-        selectNum = data['selectNum']
+        selectNum = data['selectedNum']
         req = Request.objects.get(request_id=data['request_id'])
         req.selectnum = selectNum
         req.check = data['check']
