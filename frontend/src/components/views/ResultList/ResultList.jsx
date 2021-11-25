@@ -11,7 +11,7 @@ function ResultList() {
   const [rowCount, setRowCount] = useState();
   const history = useHistory();
   const moveResultPage = (idx) => {
-    history.push(`/user/result/${idx}`);
+    window.location.replace(`/user/result/${idx}`);
   };
   const columns = [
     {
@@ -30,7 +30,7 @@ function ResultList() {
     },
     {
       title: "진행 상황",
-      dataIndex: "process_state",
+      dataIndex: "check",
       width: 150,
     },
   ];
@@ -40,12 +40,12 @@ function ResultList() {
     list.map((item, idx) => {
       item.no = idx + 1;
 
-      if (item.process_state === 0 || item.process_state === "승인대기") {
-        item.process_state = "승인대기";
-      } else if (item.process_state === 1 || item.process_state === "완료") {
-        item.process_state = "완료";
+      if (item.check === 0 || item.check === "승인대기") {
+        item.check = "승인대기";
+      } else if (item.check === 1 || item.check === "완료") {
+        item.check = "완료";
       } else {
-        item.process_state = "승인거부";
+        item.check = "승인거부";
       }
     });
     return list;
@@ -74,7 +74,7 @@ function ResultList() {
   return (
     <div className={styles.container}>
       <Paper className={styles.paper} elevation={0}>
-        <TitleBar title_name="Result" />
+        <TitleBar title_name="요청 결과" />
         <div className={styles.inner}>
           <div className={styles.description}>
             사용자 본인의 요청 리스트 및 진행 상황을 확인 가능합니다.

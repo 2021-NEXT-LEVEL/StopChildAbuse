@@ -19,3 +19,7 @@
   color: white;
   font-size: 1.2em;
 }
+
+.menuItem:visited {
+  background-color: #17807c;
+}

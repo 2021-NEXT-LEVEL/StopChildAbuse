@@ -15,7 +15,12 @@
       "@resultlist/*": ["src/components/views/ResultList/*"],
       "@result/*": ["src/components/views/ResultPage/*"],
       "@adminMain/*": ["src/components/views/AdminMainPage/*"],
-      "@checkRequestList/*": ["src/components/views/CheckRequestList/*"],
+      "@checkRequestList/*": [
+        "src/components/views/AdminMainPage/sections/CheckRequestList/*"
+      ],
+      "@userInfoList/*": [
+        "src/components/views/AdminMainPage/sections/UserInfoList/*"
+      ],
       "@checkRequest/*": ["src/components/views/CheckRequest/*"],
       "@checkResult/*": ["src/components/views/CheckResult/*"]
     }

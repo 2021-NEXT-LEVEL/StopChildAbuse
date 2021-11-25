@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "@userMain/UserMainPage.module.css";
-import { Row, Col, Result, Button } from "antd";
+import { Row, Col, Result, Button, Carousel } from "antd";
 
 function UserMainPage() {
   const history = useHistory();
   const movePage = (url) => {
-    history.push(url);
+    window.location.replace(url);
   };
 
   useEffect(() => {
@@ -15,8 +15,10 @@ function UserMainPage() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.sitemap}>
-        <img classname={styles.mainImg} src="/assets/main.png" />
+      <div className={styles.carousel}>
+        <Carousel autoplay>
+          <img src="/assets/main.png" />
+        </Carousel>
       </div>
       <div className={styles.bottom_lbox}>
         <hr className={styles.hor_line} />
@@ -36,7 +38,7 @@ function UserMainPage() {
                 className={styles.main_icon}
                 src="/assets/Icons/documents.png"
               />
-              <div className={styles.subtitle}>Documents</div>
+              <div className={styles.subtitle}>웹사이트 소개</div>
               <div className={styles.description}>
                 해당 서비스의 이용방법을 안내합니다.
               </div>
@@ -52,7 +54,7 @@ function UserMainPage() {
                 className={styles.main_icon}
                 src="/assets/Icons/request.png"
               />
-              <div className={styles.subtitle}>Request</div>
+              <div className={styles.subtitle}>요청하기</div>
               <div className={styles.description}>
                 <div>아동학대 의심 정황 발생 시,</div>
                 <div>CCTV 영상 반출을 요청할 수 있습니다.</div>
@@ -69,7 +71,7 @@ function UserMainPage() {
                 className={styles.main_icon}
                 src="/assets/Icons/result.png"
               />
-              <div className={styles.subtitle}>Result</div>
+              <div className={styles.subtitle}>요청 결과</div>
               <div className={styles.description}>
                 <div>반출 요청 및 처리 된 영상을</div>
                 <div>확인한 뒤 다운로드가 가능합니다.</div>

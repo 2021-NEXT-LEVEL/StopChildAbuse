@@ -19,8 +19,8 @@ function RequestPage() {
       date: moment(current).format("YYYY-MM-DD"),
       child_name: values.child_name,
       request_reason: values.request_reason,
-      process_state: "0",
       check: "0",
+      process_state: "0",
     };
     // console.log(variables);
     // console.log(moment(values.request_date._d, dateFormat));
@@ -44,7 +44,7 @@ function RequestPage() {
   return (
     <div className={styles.container}>
       <Paper className={styles.paper} elevation={0}>
-        <TitleBar title_name="Request" />
+        <TitleBar title_name="요청하기" />
         <div className={styles.inner}>
           <div className={styles.description}>
             아동학대 의심 정황 발생 시, CCTV 영상 반출을 요청할 수 있습니다.

@@ -3,19 +3,20 @@ import Axios from "@api/index";
 import styles from "@checkRequest/CheckRequest.module.css";
 import TitleBar from "@titlebar/TitleBar";
 import Paper from "@mui/material/Paper";
-import { Form, Radio, Row, Col, Button, Space, Result, Progress } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
+import { Radio, Row, Col, Button, Space, Input, Result } from "antd";
 
 function ResultPage() {
   const [postID, setPostID] = useState(
     parseInt(window.location.pathname.replace(/[^0-9]/g, ""))
   );
   const [disabled, setDisabled] = useState(true);
-  const [checkValue, setCheckValue] = useState(2);
+  const [checkValue, setCheckValue] = useState(0);
   const [values, setValues] = useState();
   const [requestID, setRequestID] = useState();
   const [selectedNum, setSelectedNum] = useState();
-  const [show, setShow] = useState(0);
+  const [show, setShow] = useState(-1);
+  const [rejectReason, setRejectReason] = useState();
+  const { TextArea } = Input;
 
   const toggleDisabled = () => {
     setDisabled(!disabled);
@@ -23,8 +24,11 @@ function ResultPage() {
 
   const onChange = (e) => {
     setCheckValue(e.target.value);
+    console.log(e.target.value);
     if (e.target.value === 1) {
       setShow(1);
+    } else {
+      setShow(0);
     }
   };
 
@@ -32,8 +36,8 @@ function ResultPage() {
     setSelectedNum(e.target.value);
   };
 
-  const handleEncodingStart = (e) => {
-    setShow(2);
+  const onInputRejectReason = (e) => {
+    setRejectReason(e.target.value);
   };
 
   const handleSubmit = (values) => {
@@ -42,11 +46,11 @@ function ResultPage() {
       // 적절
       let variables = {
         check: checkValue === 1 ? 1 : -1,
-        requestID: requestID,
+        request_id: requestID,
         selectedNum: selectedNum,
       };
 
-      Axios.post(`master/selectChild/`, variables)
+      Axios.post(`master/allowRequest/`, variables)
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
@@ -64,9 +68,10 @@ function ResultPage() {
       let variables = {
         postID: postID,
         check: checkValue === 1 ? 1 : -1,
+        reject_reason: rejectReason,
       };
 
-      Axios.post(`master/confirmRequest/${postID}/`, variables)
+      Axios.post(`master/rejectRequest/${postID}/`, variables)
         .then((res) => {
           console.log(res);
           if (res.status === 200) {
@@ -89,10 +94,10 @@ function ResultPage() {
 
     Axios.post(`master/checkRequest/${postID}/`, variables)
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
-          setValues(res.data);
-          setRequestID(res.data.request_id);
+          console.log(res.data.req);
+          setValues(res.data.req);
+          setRequestID(res.data.req.request_id);
         } else {
           alert("GET failed");
         }
@@ -105,7 +110,7 @@ function ResultPage() {
   return (
     <div className={styles.container}>
       <Paper className={styles.paper} elevation={0}>
-        <TitleBar title_name="Check Request" />
+        <TitleBar title_name="요청 확인" />
         <div className={styles.inner}>
           <div className={styles.description}>
             학부모의 반출 요청을 확인하고, 적절한 사유가 작성된 요청에 대한 영상
@@ -138,56 +143,102 @@ function ResultPage() {
               </Radio>
             </Radio.Group>
             <br />
-            <Button
-              type="primary"
-              onClick={toggleDisabled}
-              style={{ marginTop: 16 }}
-            >
-              적절성 유무 판단
-            </Button>
+            {values && values.check === 0 ? (
+              <Button
+                type="primary"
+                onClick={toggleDisabled}
+                style={{ marginTop: 16 }}
+              >
+                적절성 유무 판단
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                onClick={toggleDisabled}
+                disabled
+                style={{ marginTop: 16 }}
+              >
+                적절성 유무 판단
+              </Button>
+            )}
           </div>
-          {show === 1 && (
-            <Button
-              type="primary"
-              className={styles.encodingBtn}
-              onClick={handleEncodingStart}
-            >
-              암호화 시작
-            </Button>
+          {values && values.check === -1 ? (
+            <div className={styles.outer_box}>
+              <Result status="error" title="승인 거절되었습니다." />
+            </div>
+          ) : values && values.check === 1 ? (
+            <div className={styles.outer_box}>
+              <Result status="success" title="승인 완료되었습니다." />
+            </div>
+          ) : (
+            <></>
           )}
-          {show === 2 && (
+          {/* 적절성 체크 no인 경우  */}
+          {show === 0 && (
+            <div className={styles.outer_box}>
+              <div style={{ paddingBottom: "10px" }}>부적절 사유 입력</div>
+              <div>
+                <TextArea
+                  showCount
+                  maxLength={200}
+                  onChange={onInputRejectReason}
+                  className={styles.textarea}
+                />
+              </div>
+            </div>
+          )}
+          {/* 적절성 체크 yes인 경우 */}
+          {show === 1 && (
             <Row gutter={[16, 16]}>
               <Col span={14}>
-                <div className={styles.video}></div>
+                <div className={styles.video}>
+                  {/* <img src="/assets/sample.png" className={styles.video_img}/> */}
+                </div>
               </Col>
               <Col span={10}>
+                <div style={{ paddingBottom: "10px" }}>
+                  암호화에서 제외할 학부모 자녀의 인덱스를 선택하세요.
+                </div>
                 <Radio.Group onChange={onChangeSelectedNum} value={selectedNum}>
                   <Space direction="vertical">
-                    <Radio value={1}>Option A</Radio>
-                    <Radio value={2}>Option B</Radio>
-                    <Radio value={3}>Option C</Radio>
+                    <Radio value={1}>1</Radio>
+                    <Radio value={2}>2</Radio>
+                    <Radio value={3}>3</Radio>
+                    <Radio value={4}>4</Radio>
                   </Space>
                 </Radio.Group>
-                {/* <Progress
-                type="circle"
-                percent={100}
-                format={() => "Done"}
-                className={styles.progress}
-              />
-              <div style={{ paddingTop: "20px" }}>
-                <b>암호화가 성공적으로 완료됐습니다.</b>
-              </div> */}
               </Col>
             </Row>
           )}
-          <Button
-            type="primary"
-            size="large"
-            className={styles.submitBtn}
-            onClick={handleSubmit}
-          >
-            제출
-          </Button>
+          <div className={styles.bottomBtn}>
+            <Button
+              size="large"
+              className={styles.submitBtn}
+              onClick={() => window.location.replace("/master/main")}
+            >
+              나가기
+            </Button>
+            {values && values.check === 0 ? (
+              <Button
+                type="primary"
+                size="large"
+                className={styles.submitBtn}
+                onClick={handleSubmit}
+              >
+                제출
+              </Button>
+            ) : (
+              <Button
+                type="primary"
+                size="large"
+                className={styles.submitBtn}
+                onClick={handleSubmit}
+                disabled
+              >
+                제출
+              </Button>
+            )}
+          </div>
         </div>
       </Paper>
     </div>

@@ -1,0 +1,29 @@
+.paper {
+  padding-bottom: 30px;
+}
+
+.inner {
+  padding-left: 45px;
+  padding-right: 45px;
+  font-size: 1.1em;
+}
+
+.description {
+  padding-bottom: 20px;
+}
+
+.outer_box {
+  border: 2px solid #d9d9d9;
+  border-radius: 10px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.pagination {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.table_row {
+  cursor: pointer;
+}

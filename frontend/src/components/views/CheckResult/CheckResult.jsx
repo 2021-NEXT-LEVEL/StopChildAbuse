@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 function CheckResult() {
   const history = useHistory();
   const movePage = (url) => {
-    history.push(url);
+    window.location.replace(url);
   };
   return (
     <div>

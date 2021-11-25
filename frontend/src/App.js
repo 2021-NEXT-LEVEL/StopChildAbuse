@@ -9,7 +9,6 @@ import RequestPage from "@requestpage/RequestPage";
 import ResultList from "@resultlist/ResultList";
 import ResultPage from "@result/ResultPage";
 import AdminMainPage from "@adminMain/AdminMainPage";
-import CheckRequestList from "@checkRequestList/CheckRequestList";
 import CheckRequest from "@checkRequest/CheckRequest";
 import CheckResult from "@checkResult/CheckResult";
 import Footer from "@footer/Footer";
@@ -20,8 +19,8 @@ function App() {
       <NavBar />
       <div
         style={{
-          padding: "80px 50px 0px 0px",
-          minHeight: "750px",
+          padding: "80px 0px 0px 0px",
+          minHeight: "900px",
         }}
       >
         <Switch>
@@ -33,11 +32,6 @@ function App() {
           <Route exact path="/user/result" component={ResultList} />
           <Route exact path="/user/result/:postID" component={ResultPage} />
           <Route exact path="/master/main" component={AdminMainPage} />
-          <Route
-            exact
-            path="/master/checkRequest"
-            component={CheckRequestList}
-          />
           <Route
             exact
             path="/master/checkRequest/:postID"

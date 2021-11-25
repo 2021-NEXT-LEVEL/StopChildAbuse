@@ -57,7 +57,7 @@ function Register() {
           } else {
             // success
             window.alert("회원가입에 성공했습니다.");
-            history.push("/");
+            window.location.replace("/");
           }
         } else {
           window.alert("회원가입에 실패했습니다.");
@@ -160,7 +160,7 @@ function Register() {
                       <Input name="name" type="text" placeholder="이름" />
                     </InputGroup>
                   </FormControl>
-                  <FormControl isRequired>
+                  <FormControl>
                     <InputGroup>
                       <InputLeftElement
                         pointerEvents="none"
@@ -169,7 +169,7 @@ function Register() {
                       <Input name="phone" type="tel" placeholder="휴대폰번호" />
                     </InputGroup>
                   </FormControl>
-                  <FormControl isRequired>
+                  <FormControl>
                     <InputGroup>
                       <InputLeftElement
                         pointerEvents="none"

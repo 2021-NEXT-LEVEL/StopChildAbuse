@@ -8,18 +8,22 @@ const { Header } = Layout;
 function NavBar() {
   const history = useHistory();
   const [state, setState] = useState(0);
-  const nonlogin_menu = ["Documents"]; // 0
-  const user_menu = ["Documents", "Request", "Result"]; // 1
-  const admin_menu = ["요청확인"]; // 2
+  const [currentURL, setCurrentURL] = useState(window.location.pathname);
+  const [selectedKey, setSelectedKey] = useState();
+  const nonlogin_menu = ["웹사이트 소개"]; // 0
+  const user_menu = ["웹사이트 소개", "요청하기", "요청 결과"]; // 1
+  const admin_menu = []; // 2
   const user_url = ["/user/documents", "/user/request", "/user/result"];
-  const admin_url = ["/master/checkRequest", "/master/checkResult"];
+  const admin_url = [];
   const movePage = (url) => {
-    history.push(url);
+    // history.push(url);
+    window.location.replace(url);
   };
 
   const logout = () => {
     window.location.replace("/");
   };
+
   const menu = (
     <Menu>
       <Menu.Item key={1}>
@@ -32,10 +36,22 @@ function NavBar() {
   );
 
   useEffect(() => {
-    console.log(localStorage);
-    if (localStorage.length === 0) setState(0);
-    else if (localStorage.name === "관리자") setState(2);
-    else setState(1);
+    // console.log(localStorage);
+    // console.log(window.location.pathname.endsWith("/main"));
+    setCurrentURL(window.location.pathname);
+
+    if (localStorage.length === 0) {
+      setState(0);
+      if (currentURL.endsWith("/documents")) {
+        setSelectedKey("1");
+        console.log("hi");
+      } else setSelectedKey("0");
+    } else if (localStorage.name === "관리자") {
+      setState(2);
+    } else {
+      setState(1);
+    }
+    console.log("여기:", selectedKey);
   }, []);
 
   return (
@@ -55,27 +71,29 @@ function NavBar() {
         )}
         {state === 1 && (
           <div className={styles.logo} onClick={() => movePage("/user/main")}>
-            {" "}
             <img src="/assets/logo.png" className={styles.logoImg} />
           </div>
         )}
         {state === 2 && (
           <div className={styles.logo} onClick={() => movePage("/master/main")}>
-            {" "}
             <img src="/assets/logo.png" className={styles.logoImg} />
           </div>
         )}
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["0"]}
+          defaultSelectedKeys={[selectedKey]}
           style={{ backgroundColor: "#3E9794" }}
         >
           {localStorage.length === 0
             ? nonlogin_menu.map((submenu, idx) => {
                 const key = idx;
                 return (
-                  <Menu.Item key={key} onClick={() => movePage("/documents")}>
+                  <Menu.Item
+                    key={key}
+                    className={styles.menuItem}
+                    onClick={() => movePage("/user/documents")}
+                  >
                     {submenu}
                   </Menu.Item>
                 );
@@ -84,7 +102,11 @@ function NavBar() {
             ? user_menu.map((submenu, idx) => {
                 const key = idx;
                 return (
-                  <Menu.Item key={key} onClick={() => movePage(user_url[idx])}>
+                  <Menu.Item
+                    key={key}
+                    className={styles.menuItem}
+                    onClick={() => movePage(user_url[idx])}
+                  >
                     {submenu}
                   </Menu.Item>
                 );
@@ -92,7 +114,11 @@ function NavBar() {
             : admin_menu.map((submenu, idx) => {
                 const key = idx;
                 return (
-                  <Menu.Item key={key} onClick={() => movePage(admin_url[idx])}>
+                  <Menu.Item
+                    key={key}
+                    className={styles.menuItem}
+                    onClick={() => movePage(admin_url[idx])}
+                  >
                     {submenu}
                   </Menu.Item>
                 );
