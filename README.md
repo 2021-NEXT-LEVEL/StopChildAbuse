@@ -61,25 +61,6 @@ The final round of the 2021 NIA Artificial Intelligence Data Contest
 
 
 
-## 📢How to test the detect and tracking code?
-    git clone https://github.com/2021-NEXT-LEVEL/StopChildAbuse
-    cd detection_and_tracking
-    pip install -qr requirements.txt
-    
-    #Enter the commands below using colab or jupyternotebook
-    import torch
-    from IPython.display import Image, clear_output  # to display images
-    clear_output()
-    print(f"Setup complete. Using torch {torch.__version__} ({torch.cuda.get_device_properties(0).name if torch.cuda.is_available() else 'CPU'})")
-    
-    #Enter the commands below
-    python track.py --yolo_weights [folder location]/Yolov5_DeepSort_Pytorch/yolov5/weights/best.pt --source heart_Trim_7.mp4[your video name] --save-vid
-    
-    #You can check out put here
-    txt file for bounding box : Yolov5_DeepSort_Pytorch/inference/output/[your video name].txt
-    output mp4 file : Yolov5_DeepSort_Pytorch/inference/output/
-
-
 ## 📢How to test our face detection model?
 
 - You can download a pt file here
@@ -135,11 +116,33 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 <a href="https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM?userstoinvite=minjjung9642%40gmail.com&actionButton=1#scrollTo=tCPF38tIZ47g"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
 
 
+## 📢How to test the detect and tracking code?
+    git clone https://github.com/2021-NEXT-LEVEL/StopChildAbuse
+    cd detection_and_tracking
+    pip install -qr requirements.txt
+    
+    #Enter the commands below using colab or jupyternotebook
+    import torch
+    from IPython.display import Image, clear_output  # to display images
+    clear_output()
+    print(f"Setup complete. Using torch {torch.__version__} ({torch.cuda.get_device_properties(0).name if torch.cuda.is_available() else 'CPU'})")
+    
+    #Enter the commands below
+    python track.py --yolo_weights [folder location]/Yolov5_DeepSort_Pytorch/yolov5/weights/best.pt --source heart_Trim_7.mp4[your video name] --save-vid
+    
+    #You can check out put here
+    txt file for bounding box : Yolov5_DeepSort_Pytorch/inference/output/[your video name].txt
+    output mp4 file : Yolov5_DeepSort_Pytorch/inference/output/[your video name].mp4
+
+
+ <p align="center">
+   <img src="https://user-images.githubusercontent.com/74306759/143546012-68cf2f2a-c25c-4112-a0bb-39c9435b7cd2.png" alt="[YOUR_ALT]"/>
+</p>
+
+
 ## 📢How to run the website?
 여기에 웹사이트 실행코드 적어주세용
 
-## 📷DEMO
-https://user-images.githubusercontent.com/74306759/143541213-cd6a0615-a3d4-44e5-9930-d2e2f12862cd.mp4
 
 
 ## 📌Service Prototype
