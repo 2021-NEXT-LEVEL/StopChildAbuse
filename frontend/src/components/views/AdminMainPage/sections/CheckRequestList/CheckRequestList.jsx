@@ -42,7 +42,6 @@ function CheckRequestList() {
   ];
 
   const setList = (list) => {
-    console.log(list);
     list.map((item, idx) => {
       item.no = idx + 1;
 
@@ -85,7 +84,7 @@ function CheckRequestList() {
             onRow={(record, rowIndex) => {
               return {
                 onClick: (event) => {
-                  moveResultPage(rowCount - rowIndex);
+                  moveResultPage(record.no);
                 },
               };
             }}

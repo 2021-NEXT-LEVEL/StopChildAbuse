@@ -32,7 +32,7 @@ function AdminMainPage() {
         setAllow(allow);
         setTotalRequest(res.data);
         setTodayRequest(today);
-        setTotalUser(res.data.length - 1);
+        setTotalUser(res.data.length);
       }
     });
 

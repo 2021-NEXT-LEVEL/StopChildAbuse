@@ -21,7 +21,26 @@ function ResultPage() {
   const [output, setOutput] = useState();
   const [checkValue, setCheckValue] = useState();
   const [rejectReason, setRejectReason] = useState();
+  const [video, setVideo] = useState();
   const [show, setShow] = useState(0);
+  const video_urls = [
+    {
+      num: 81,
+      url: "https://drive.google.com/file/d/17cCqicVN5Pyq-KzAsp6A93_6dC6qNpli/view?usp=sharing",
+    },
+    {
+      num: 82,
+      url: "https://drive.google.com/file/d/1A9Bg3OCJJtNG6-O6A7PXe6rtyMA1209g/view?usp=sharing",
+    },
+    {
+      num: 83,
+      url: "https://drive.google.com/file/d/1maAFE0eTA75QsFhj-cs_M95_oLzkZ0DO/view?usp=sharing",
+    },
+    {
+      num: 84,
+      url: "https://drive.google.com/file/d/1OnkSaMeC9bhqA0mHKv5TdsUv82i3Jeci/view?usp=sharing",
+    },
+  ];
 
   const history = useHistory();
 
@@ -37,7 +56,9 @@ function ResultPage() {
         console.log(res);
         if (res.status === 200) {
           if (res.data.message === "correct") {
+            window.alert("확인되었습니다.");
             setShow(1);
+            setVideo(res.data.video.output_source);
           } else {
             window.alert("키가 일치하지 않습니다.");
           }
@@ -48,6 +69,25 @@ function ResultPage() {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const download = () => {
+    // console.log(video_urls[requestID - 81].url);
+    window.open(video_urls[requestID - 81].url);
+    // let variables = {
+    //   request_id: requestID,
+    // };
+
+    // Axios.post(`user/downloadVideo/`, variables)
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.status === 200) {
+    //       console.log("get success");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   useEffect(() => {
@@ -137,6 +177,7 @@ function ResultPage() {
                           icon={<DownloadOutlined />}
                           size="large"
                           className={styles.downloadButton}
+                          onClick={download}
                         >
                           Download
                         </Button>

@@ -51,7 +51,6 @@ function NavBar() {
     } else {
       setState(1);
     }
-    console.log("여기:", selectedKey);
   }, []);
 
   return (
