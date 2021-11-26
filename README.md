@@ -1,6 +1,7 @@
 # StopChildAbuse👶🏻
 
 2021 NIA 인공지능 데이터 활용 경진대회 본선진출작
+
 The final round of the 2021 NIA Artificial Intelligence Data Contest
 
 
