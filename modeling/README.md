@@ -46,4 +46,8 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 <br/>
 
 ## Google Colab
+- image labeling pre-processing   
+<a href="https://colab.research.google.com/drive/1krIA_bohDSipunSrbldWFR1d9qw_U66o?authuser=2#scrollTo=t7VWjxYtFwIv"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
+
+- YOLOv5 model training    
 <a href="https://colab.research.google.com/drive/1KG4F5vutIZYqgilqLcp-M2rBSc6_onFM?userstoinvite=minjjung9642%40gmail.com&actionButton=1#scrollTo=tCPF38tIZ47g"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"></a>
