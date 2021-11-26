@@ -53,7 +53,9 @@ The final round of the 2021 NIA Artificial Intelligence Data Contest
 
 
 ## ❤System Architecture❤
- ![image](https://user-images.githubusercontent.com/74306759/143539881-0c9c0fd4-d70f-475a-a514-d70c8ac3a419.png)
+ <p align="center">
+   <img src="https://user-images.githubusercontent.com/74306759/143539881-0c9c0fd4-d70f-475a-a514-d70c8ac3a419.png" alt="[YOUR_ALT]"/>
+</p>
 
 
    *The service development environment is as above. The frontend of the web page used React, the backend used Django, and the database used MySQL. Face detection and tracking were performed for the image processing part using Yolo version 5 and Deepsort, and Pyroptodome and OpenCV were used for encryption, decryption, and mosaic parts.*
