@@ -143,9 +143,7 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 ## 📢How to run the website?
 ```
 $ git clone https://github.com/4PT5/PersonalTraining-for-Visually-Impaired
-```
-### Pip
-```
+
 // backend
 $ cd backend
 $ python3 -m venv django_venv
