@@ -12,11 +12,11 @@ The final round of the 2021 NIA Artificial Intelligence Data Contest
   *ChildKeeper started with NEXT LEVEL's hope that child abuse would no longer occur using this automation system.*
   
  
-    🎅🏻 Minjeong Kim(Team Leader) : https://github.com/kimminje0ng
+    🙈 Hyewon Kang(Team Leader) : https://github.com/HyewonKkang
     
     🕵🏼‍♀️ Yujung Gil(Team Member) : https://github.com/fairyroad
     
-    🙈 Hyewon Kang(Team Member) : https://github.com/HyewonKkang
+    🎅🏻 Minjeong Kim(Team Member) : https://github.com/kimminje0ng
   
     👩🏻‍🚀 Su-A Jang(Team Member) : https://github.com/sua1223
     
@@ -136,16 +136,35 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 
 
  <p align="center">
-   <img src="https://user-images.githubusercontent.com/74306759/143546012-68cf2f2a-c25c-4112-a0bb-39c9435b7cd2.png" alt="[YOUR_ALT]"/>
+   <img src="https://user-images.githubusercontent.com/68578916/143551418-d4024810-6cd2-4fe4-8c6e-4afba10f7dff.gif" />
 </p>
 
 
 ## 📢How to run the website?
-여기에 웹사이트 실행코드 적어주세용
+```
+$ git clone https://github.com/4PT5/PersonalTraining-for-Visually-Impaired
+```
+### Pip
+```
+// backend
+$ cd backend
+$ python3 -m venv django_venv
+$ source django_venv/bin/activate
+(django_venv) $ pip install -r requirements.txt
+(django_venv) $ python manage.py migrate
+(django_venv) $ python manage.py createsuperuser
+(django_venv) $ python manage.py runserver
+# Load the site at http://127.0.0.1:8000/
 
+// frontend
+$ cd frontend
+$ npm install
+$ npm start
+```
 
 
 ## 📌Service Prototype
-여기에 시연영상 넣어주세용
+You can watch the video through the YouTube link below.  
+[Demo](https://youtu.be/6wnz0OTOPbU)  
 
 Thanks, NIA and mikel-brostrom.
