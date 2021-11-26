@@ -5,7 +5,7 @@
 The final round of the 2021 NIA Artificial Intelligence Data Contest
 
 
-*'ChildKeeper' is an Automation system for automating mosaic and encryption processing to take out CCTV footage to prevent chidl abuse in daycare centers.*
+  *'ChildKeeper' is an Automation system for automating mosaic and encryption processing to take out CCTV footage to prevent child abuse in daycare centers.*
  
  ## ⚡TEAM _ NEXT LEVEL⚡
   
@@ -78,6 +78,11 @@ The final round of the 2021 NIA Artificial Intelligence Data Contest
 
 
 ## 📢How to test our face detection model?
+
+- You can download a pt file here
+
+    https://drive.google.com/drive/u/0/folders/1_MzpXoRL14ijcz9ESEaEfOveUHjxN0pP
+
 
 - clone YOLOv5
 ```
