@@ -48,7 +48,7 @@ function UserInfoList() {
   useEffect(() => {
     Axios.get("master/getUserList/").then((res) => {
       if (res.status === 200) {
-        setListData(res.data.slice(1, res.data.length));
+        setListData(res.data.slice(0, res.data.length - 1));
       } else {
         alert("register failed");
       }
