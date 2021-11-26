@@ -106,7 +106,7 @@ class checkedRequest(generics.CreateAPIView):
     def post(self, request, postID = False):
         queryset_req = Request.objects.all()
         post_num = self.kwargs['postID']
-        queryset_video = OutputVideo.objects.filter(request_id=postID-1)
+        queryset_video = OutputVideo.objects.filter(request_id=post_num)
         if queryset_video:
             return JsonResponse({'req': queryset_req.values()[post_num - 1], 'video': queryset_video.values()[0]}, status = 200)
         else:
