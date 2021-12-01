@@ -117,9 +117,9 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
 
 
 ## 📢How to test the detect and tracking code?
-    $git clone https://github.com/2021-NEXT-LEVEL/StopChildAbuse
-    $cd detection_and_tracking
-    $pip install -qr requirements.txt
+    $ git clone https://github.com/2021-NEXT-LEVEL/StopChildAbuse
+    $ cd detection_and_tracking
+    $ pip install -qr requirements.txt
     
     #Enter the commands below using colab or jupyternotebook
     import torch
@@ -128,7 +128,7 @@ $ python train.py --img 416 --batch 16 --epochs 100 --data data.yaml --weights y
     print(f"Setup complete. Using torch {torch.__version__} ({torch.cuda.get_device_properties(0).name if torch.cuda.is_available() else 'CPU'})")
     
     #Enter the commands below
-    $python track.py --yolo_weights [folder location]/Yolov5_DeepSort_Pytorch/yolov5/weights/best.pt --source heart_Trim_7.mp4[your video name] --save-vid
+    $ python track.py --yolo_weights [folder location]/Yolov5_DeepSort_Pytorch/yolov5/weights/best.pt --source heart_Trim_7.mp4[your video name] --save-vid
     
     #You can check out put here
     txt file for bounding box : Yolov5_DeepSort_Pytorch/inference/output/[your video name].txt
