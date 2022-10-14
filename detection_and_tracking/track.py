@@ -120,6 +120,7 @@ def detect(opt):
         # Apply NMS
         pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, opt.classes, opt.agnostic_nms, max_det=opt.max_det)
         dt[2] += time_sync() - t3
+        
 
         # Process detections
         for i, det in enumerate(pred):  # detections per image
@@ -174,8 +175,9 @@ def detect(opt):
                             with open(txt_path, 'a') as f:
                               if past_id >= id:
                                 #print(str(past_id)+"\n")
+                                f.write(frame_idx)
                                 f.write("\n")
-                              f.write(str(id)+' ' + str(bbox_left)+' '+str(bbox_top)+' '+ str(bbox_w)+' '+str(bbox_h)+"\n")
+                              f.write("["+str(id)+' ' + str(bbox_left)+' '+str(bbox_top)+' '+ str(bbox_w)+' '+str(bbox_h)+"]")
                               past_id = id
                                #f.write(('%g ' * 10 + '\n') % (frame_idx + 1, id, bbox_left,
                                                            #bbox_top, bbox_w, bbox_h, -1, -1, -1, -1))  # label format
